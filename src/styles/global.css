@@ -4,7 +4,6 @@
 @import '@fontsource/manrope/700.css';
 @import '@fontsource/manrope/800.css';
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @tailwind base;
 @tailwind components;
@@ -13,47 +12,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    @apply font-manrope;
   }
 
   body {
-    @apply font-manrope antialiased bg-background text-foreground;
-  }
-
-  :root {
-    --background: oklch(0.187 0.041 258);
-    --foreground: oklch(0.914 0.037 265);
-    --card: oklch(0.187 0.041 258);
-    --card-foreground: oklch(0.914 0.037 265);
-    --popover: oklch(0.284 0.038 261);
-    --popover-foreground: oklch(0.914 0.037 265);
-    --primary: oklch(0.829 0.121 89);
-    --primary-foreground: oklch(0.310 0.063 89);
-    --secondary: oklch(0.818 0.080 161);
-    --secondary-foreground: oklch(0.301 0.066 162);
-    --muted: oklch(0.242 0.039 258);
-    --muted-foreground: oklch(0.827 0.029 81);
-    --accent: oklch(0.743 0.117 90);
-    --accent-foreground: oklch(0.370 0.076 89);
-    --destructive: oklch(0.838 0.089 27);
-    --destructive-foreground: oklch(0.328 0.134 27);
-    --border: oklch(0.397 0.026 86);
-    --input: oklch(0.656 0.028 85);
-    --ring: oklch(0.829 0.121 89);
-    --chart-1: oklch(0.829 0.121 89);
-    --chart-2: oklch(0.818 0.080 161);
-    --chart-3: oklch(0.743 0.117 90);
-    --chart-4: oklch(0.656 0.028 85);
-    --chart-5: oklch(0.397 0.026 86);
-    --radius: 1rem;
-    --sidebar: oklch(0.187 0.041 258);
-    --sidebar-foreground: oklch(0.914 0.037 265);
-    --sidebar-primary: oklch(0.829 0.121 89);
-    --sidebar-primary-foreground: oklch(0.310 0.063 89);
-    --sidebar-accent: oklch(0.242 0.039 258);
-    --sidebar-accent-foreground: oklch(0.827 0.029 81);
-    --sidebar-border: oklch(0.397 0.026 86);
-    --sidebar-ring: oklch(0.829 0.121 89);
+    font-family: 'Inter', 'Manrope', sans-serif;
+    @apply bg-background text-foreground antialiased;
   }
 
   * {
@@ -61,25 +24,78 @@
   }
 }
 
-@layer components {
-  .glass-card {
-    background: rgba(20, 32, 50, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(201, 168, 76, 0.2);
-  }
-
-  .gold-glow {
-    transition: box-shadow 0.3s ease;
-  }
-
-  .gold-glow:hover {
-    box-shadow: 0 0 25px rgba(201, 168, 76, 0.4);
-  }
+.glass-card {
+  background: rgba(26, 28, 30, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
-@layer utilities {
-  .text-off-white {
-    color: #F5F0E8;
+.gold-glow {
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+}
+
+.text-off-white {
+  color: #f5f0e8;
+}
+
+/* Animations of Entry */
+[data-animate] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+[data-animate="section"] {
+  transform: translateY(30px);
+  transition-duration: 700ms;
+}
+
+[data-animate="title"] {
+  transform: translateY(20px);
+  transition-duration: 600ms;
+}
+
+[data-animate="text"] {
+  transform: translateY(15px);
+  transition-duration: 600ms;
+  transition-delay: 100ms;
+}
+
+[data-animate="card"] {
+  transform: translateY(25px);
+  transition-duration: 500ms;
+}
+
+[data-animate="button"] {
+  transform: scale(0.95);
+  transition-duration: 400ms;
+  transition-delay: 200ms;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-animate="image"] {
+  transform: scale(1.02);
+  transition-duration: 800ms;
+}
+
+[data-animate-delay="1"] { transition-delay: 100ms; }
+[data-animate-delay="2"] { transition-delay: 200ms; }
+[data-animate-delay="3"] { transition-delay: 300ms; }
+[data-animate-delay="4"] { transition-delay: 400ms; }
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
