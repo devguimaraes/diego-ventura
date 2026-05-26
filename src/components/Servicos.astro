@@ -1,0 +1,41 @@
+---
+import Card from './ui/Card.astro';
+import { servicos } from '../data/site.json';
+---
+
+<section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
+  <div class="text-center mb-16">
+    <h2 class="text-headline-lg text-off-white mb-4">{servicos.title}</h2>
+    <div class="h-1 w-20 bg-primary mx-auto"></div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+    <div class="lg:col-span-7 space-y-gutter">
+      {servicos.items.map((item) => (
+        <Card class="flex gap-6 items-start p-8 glass-card">
+          <span class="material-symbols-outlined text-secondary text-4xl mt-1">{item.icon}</span>
+          <div>
+            <h3 class="text-headline-md text-primary mb-2">{item.title}</h3>
+            <p class="text-on-surface-variant/80 text-body-md mb-4">{item.description}</p>
+            <a href={item.link} class="text-primary text-label-md flex items-center gap-2 hover:gap-4 transition-all">
+              Saiba Mais <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="lg:col-span-5 h-full min-h-[500px]">
+      <div class="relative w-full h-full rounded-lg overflow-hidden glass-card border-none flex items-center justify-center group cursor-pointer">
+        <img src="/images/video-thumb.jpg" alt={servicos.video.title} class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />
+        <div class="relative z-10 w-20 h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-4xl leading-none">play_arrow</span>
+        </div>
+        <div class="absolute bottom-6 left-6 z-10">
+          <p class="text-primary font-bold text-lg mb-1">{servicos.video.title}</p>
+          <p class="text-off-white/80 text-sm">{servicos.video.subtitle}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
