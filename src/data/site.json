@@ -102,7 +102,8 @@
   },
   "planos": {
     "title": "Sua oportunidade de transformação",
-    "subtitle": "Se você sempre quis ter o acompanhamento de um profissional que realmente entenda suas expectativas... essa é a sua oportunidade.",
+    "subtitle": "Se você sempre quis ter o acompanhamento de um profissional que realmente entenda suas expectativas...",
+    "subtitleHighlight": "essa é a sua oportunidade.",
     "items": [
       { "icon": "fitness_center", "title": "Perder peso", "subtitle": "1200 - 1800 kcal", "cta": "Entre em Contato", "highlight": false },
       { "icon": "workspace_premium", "title": "Atendimento VIP", "subtitle": "3 meses de acompanhamento", "price": "R$ 387,00", "cta": "Garantir Vaga VIP", "highlight": true, "badge": "Mais Procurado" },

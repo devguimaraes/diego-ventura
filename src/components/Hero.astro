@@ -11,7 +11,7 @@ import { hero, contact } from '../data/site.json';
         {hero.badge}
       </span>
       <h1 class="text-display-lg leading-tight text-off-white mb-6 max-w-lg">
-        <span class="text-primary">3 meses de atendimento VIP</span> para transformar seu corpo e sua saúde
+        {hero.headline.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headline.split('VIP')[1]}
       </h1>
       <p class="text-body-lg text-body-lg text-on-surface-variant/80 mb-8 max-w-lg">
         {hero.description}
