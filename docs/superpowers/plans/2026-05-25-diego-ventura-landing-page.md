@@ -4,66 +4,77 @@
 
 **Goal:** Landing page de produção para Dr. Dhiego Ventura, nutricionista. Site single-page com 12 seções em tema dark premium, construído com Astro + Tailwind a partir de design gerado no Stitch.
 
-**Architecture:** Astro 5 com `@astrojs/tailwind`, componentes `.astro` por seção, dados em `site.json`, imagens otimizadas via `astro:assets`, formulário via FormSubmit. Layout base encapsula Header, Footer e WhatsApp FAB.
+**Architecture:** Astro 5 com `@astrojs/tailwind` + `@astrojs/react`, seções da página em `.astro`, componentes de UI (botões, inputs, cards) em React via shadcn/ui, dados em `site.json`, imagens otimizadas via `astro:assets`, formulário via FormSubmit. Layout base encapsula Header, Footer e WhatsApp FAB.
 
-**Tech Stack:** Astro 5, Tailwind CSS 3, @fontsource/manrope, Material Symbols, sharp (via astro:assets), FormSubmit
+**Tech Stack:** Astro 5, React 18, shadcn/ui, Tailwind CSS 3, Bun (runtime + package manager), @fontsource/manrope, Material Symbols, sharp (via astro:assets), FormSubmit
 
 **Spec:** `docs/superpowers/specs/2026-05-25-diego-ventura-landing-page-design.md`
 
 ---
 
-### Task 1: Scaffold do projeto Astro
+### Task 1: Scaffold do projeto Astro + Bun
 
 **Files:**
 - Create: `package.json`
 - Create: `astro.config.ts`
 - Create: `tsconfig.json`
-- Modify: `.gitignore` (add Astro entries)
+- Modify: `.gitignore` (adicionar `bun.lock`)
 
-- [ ] **Step 1: Inicializar projeto Astro**
+- [ ] **Step 1: Verificar Bun instalado**
 
 ```bash
-npm create astro@latest . -- --template minimal --skip-houston --install --no-git
+bun --version
+```
+
+Expected: `1.x.x` ou superior. Se não tiver: `curl -fsSL https://bun.sh/install | bash`
+
+- [ ] **Step 2: Inicializar projeto Astro**
+
+```bash
+bun create astro@latest . -- --template minimal --skip-houston --install --no-git
 ```
 
 Expected: `package.json` criado com `astro` como dependência.
 
-- [ ] **Step 2: Instalar dependências adicionais**
+- [ ] **Step 3: Instalar dependências com Bun**
 
 ```bash
-npm install @astrojs/tailwind tailwindcss @fontsource/manrope
+bun add @astrojs/tailwind @astrojs/react @types/react @types/react-dom
+bun add tailwindcss @fontsource/manrope react react-dom
+bun add clsx tailwind-merge
 ```
 
-Expected: `@astrojs/tailwind`, `tailwindcss`, `@fontsource/manrope` adicionados ao `package.json`.
+Expected: todas as dependências no `package.json` + `bun.lock` gerado.
 
-- [ ] **Step 3: Configurar `astro.config.ts`**
+- [ ] **Step 4: Configurar `astro.config.ts`**
 
 ```typescript
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
 
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [tailwind(), react()],
   output: 'static',
   site: 'https://dr-dhiego-ventura.vercel.app',
 });
 ```
 
-- [ ] **Step 4: Verificar que `astro dev` sobe**
+- [ ] **Step 5: Verificar que `astro dev` sobe**
 
 ```bash
-npx astro dev --port 4321 &
+bunx astro dev --port 4321 &
 sleep 3 && curl -s http://localhost:4321 | head -5
 kill %1
 ```
 
 Expected: HTML da página inicial renderizado.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
-git add package.json package-lock.json astro.config.ts tsconfig.json
-git commit -m "chore: scaffold Astro project with Tailwind"
+git add package.json bun.lock astro.config.ts tsconfig.json
+git commit -m "chore: scaffold Astro project with Bun, React, and Tailwind"
 ```
 
 ---
@@ -227,7 +238,55 @@ git commit -m "feat: configure Tailwind with design system tokens"
 
 ---
 
-### Task 3: Criar arquivo de dados `site.json`
+### Task 3: Setup shadcn/ui
+
+**Files:**
+- Create: `components.json`
+- Create: `src/lib/utils.ts`
+- Create: `src/components/ui/button.tsx`
+- Create: `src/components/ui/card.tsx`
+- Create: `src/components/ui/input.tsx`
+- Create: `src/components/ui/badge.tsx`
+
+- [ ] **Step 1: Inicializar shadcn/ui**
+
+```bash
+bunx shadcn@latest init
+```
+
+Responder ao wizard interativo:
+- Style: `New York`
+- Base color: `Neutral`
+- CSS variables: `Yes`
+- CSS file: `src/styles/global.css`
+- Tailwind config: `tailwind.config.ts`
+- Components: `src/components/ui`
+- Utils: `src/lib/utils`
+
+Expected: `components.json` criado, `src/lib/utils.ts` criado com `cn()` helper.
+
+- [ ] **Step 2: Adicionar componentes shadcn/ui**
+
+```bash
+bunx shadcn@latest add button card input badge
+```
+
+Expected: 4 componentes React criados em `src/components/ui/`.
+
+- [ ] **Step 3: Sobrescrever CSS variables do shadcn com tokens do DESIGN.md**
+
+Editar `src/styles/global.css` para usar os tokens CSS do nosso design system em vez do tema padrão do shadcn. As variáveis `--primary`, `--secondary`, `--background`, etc. do shadcn devem apontar para nossos tokens (ver Task 2).
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add components.json src/lib/utils.ts src/components/ui/
+git commit -m "feat: setup shadcn/ui with Button, Card, Input, Badge components"
+```
+
+---
+
+### Task 3b: Criar arquivo de dados `site.json`
 
 **Files:**
 - Create: `src/data/site.json`
@@ -426,82 +485,89 @@ git commit -m "feat: add static content data file"
 
 ---
 
-### Task 4: Criar componentes de UI base (Button e GlassCard)
+### Task 4: Criar wrappers Astro para componentes shadcn/ui
 
 **Files:**
 - Create: `src/components/ui/Button.astro`
-- Create: `src/components/ui/GlassCard.astro`
+- Create: `src/components/ui/Card.astro`
+- Create: `src/components/ui/Input.astro`
 
-- [ ] **Step 1: Escrever `src/components/ui/Button.astro`**
+- [ ] **Step 1: Escrever `src/components/ui/Button.astro` (wrapper React→Astro)**
 
 ```astro
 ---
+import { Button as ShadcnButton } from './button';
+
 export interface Props {
-  variant?: 'primary' | 'outline';
-  href?: string;
+  variant?: 'default' | 'outline' | 'ghost';
   size?: 'default' | 'lg';
+  href?: string;
   class?: string;
 }
 
-const {
-  variant = 'primary',
-  href,
-  size = 'default',
-  class: extraClass = '',
-} = Astro.props;
-
-const baseClasses = 'inline-flex items-center justify-center gap-2 font-label-md text-label-md font-bold transition-all duration-200 ease-in-out active:scale-95';
-
-const variantClasses = variant === 'primary'
-  ? 'bg-primary text-on-primary gold-glow'
-  : 'border-2 border-primary text-primary hover:bg-primary hover:text-on-primary';
-
-const sizeClasses = size === 'lg'
-  ? 'px-10 py-5 rounded-full'
-  : 'px-6 py-2 rounded-full';
-
-const Tag = href ? 'a' : 'button';
-const attrs = href ? { href } : { type: 'button' };
+const { variant = 'default', size = 'default', href, class: extraClass = '' } = Astro.props;
+const isOutline = variant === 'outline';
 ---
 
-<Tag {...attrs} class={`${baseClasses} ${variantClasses} ${sizeClasses} ${extraClass}`}>
-  <slot />
-</Tag>
+<ShadcnButton
+  variant={isOutline ? 'outline' : 'default'}
+  size={size}
+  asChild={!!href}
+  client:load
+  className={extraClass}
+>
+  {href ? (
+    <a href={href}><slot /></a>
+  ) : (
+    <slot />
+  )}
+</ShadcnButton>
 ```
 
-- [ ] **Step 2: Escrever `src/components/ui/GlassCard.astro`**
+- [ ] **Step 2: Escrever `src/components/ui/Card.astro` (wrapper React→Astro)**
 
 ```astro
 ---
+import { Card as ShadcnCard } from './card';
+
 export interface Props {
-  borderBottom?: boolean;
-  hover?: boolean;
   padding?: 'default' | 'lg';
   class?: string;
 }
 
-const {
-  borderBottom = false,
-  hover = true,
-  padding = 'default',
-  class: extraClass = '',
-} = Astro.props;
-
-const paddingClasses = padding === 'lg' ? 'p-10' : 'p-8';
-const hoverClasses = hover ? 'group hover:border-primary transition-all duration-500' : '';
-const borderClass = borderBottom ? 'border-b-4 border-b-primary' : 'border-none';
+const { class: extraClass = '' } = Astro.props;
 ---
 
-<div class={`glass-card rounded-lg ${paddingClasses} ${hoverClasses} ${borderClass} ${extraClass}`}>
+<ShadcnCard client:load className={extraClass}>
   <slot />
-</div>
+</ShadcnCard>
 ```
 
-- [ ] **Step 3: Commit**
+- [ ] **Step 3: Escrever `src/components/ui/Input.astro` (wrapper React→Astro)**
+
+```astro
+---
+import { Input as ShadcnInput } from './input';
+
+export interface Props {
+  type?: string;
+  name?: string;
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { class: extraClass = '', ...props } = Astro.props;
+---
+
+<ShadcnInput client:load {...props} className={extraClass} />
+```
+
+- [ ] **Step 4: Commit**
 
 ```bash
-git add src/components/ui/Button.astro src/components/ui/GlassCard.astro
-git commit -m "feat: add base UI components (Button, GlassCard)"
+git add src/components/ui/Button.astro src/components/ui/Card.astro src/components/ui/Input.astro
+git commit -m "feat: add Astro wrappers for shadcn/ui Button, Card, Input"
 ```
 
 ---
@@ -723,7 +789,7 @@ git commit -m "feat: add Hero section with VIP offer"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { servicos } from '../data/site.json';
 ---
 
@@ -737,8 +803,7 @@ import { servicos } from '../data/site.json';
     <!-- Services list -->
     <div class="lg:col-span-7 space-y-gutter">
       {servicos.items.map((item) => (
-        <GlassCard>
-          <div class="flex gap-6 items-start">
+        <Card class="flex gap-6 items-start">
             <span class="material-symbols-outlined text-secondary text-4xl mt-1">{item.icon}</span>
             <div>
               <h3 class="font-headline-md text-headline-md text-primary mb-2">{item.title}</h3>
@@ -751,7 +816,7 @@ import { servicos } from '../data/site.json';
               </a>
             </div>
           </div>
-        </GlassCard>
+        </Card>
       ))}
     </div>
 
@@ -794,7 +859,7 @@ git commit -m "feat: add Servicos section with video thumbnail"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { sobre, brand } from '../data/site.json';
 ---
 
@@ -818,7 +883,7 @@ import { sobre, brand } from '../data/site.json';
       <p class="text-on-surface-variant/80 font-body-lg mb-6 leading-relaxed">{sobre.paragraph1}</p>
       <p class="text-on-surface-variant/80 font-body-lg mb-10 leading-relaxed">{sobre.paragraph2}</p>
 
-      <GlassCard borderBottom class="!border-primary/30 flex items-center gap-4">
+      <Card borderBottom class="!border-primary/30 flex items-center gap-4">
         <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
           <span class="material-symbols-outlined text-primary">verified</span>
         </div>
@@ -826,7 +891,7 @@ import { sobre, brand } from '../data/site.json';
           <p class="font-bold text-primary">CRN {brand.crn}</p>
           <p class="text-sm text-on-surface-variant/60">Conselho Regional de Nutrição</p>
         </div>
-      </GlassCard>
+      </Card>
     </div>
   </div>
 </section>
@@ -850,7 +915,7 @@ git commit -m "feat: add Sobre section with bio and CRN badge"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { vantagens } from '../data/site.json';
 ---
 
@@ -859,11 +924,11 @@ import { vantagens } from '../data/site.json';
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
     {vantagens.items.map((item) => (
-      <GlassCard hover={false} class="text-center hover:bg-surface-container transition-all">
+      <Card hover={false} class="text-center hover:bg-surface-container transition-all">
         <span class="material-symbols-outlined text-secondary text-5xl mb-6">{item.icon}</span>
         <h4 class="font-label-md text-label-md text-primary mb-3 uppercase tracking-wider">{item.title}</h4>
         <p class="text-sm text-on-surface-variant/70">{item.description}</p>
-      </GlassCard>
+      </Card>
     ))}
   </div>
 </section>
@@ -940,7 +1005,7 @@ git commit -m "feat: add Especialidades section with split layouts"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { depoimentos } from '../data/site.json';
 ---
 
@@ -949,7 +1014,7 @@ import { depoimentos } from '../data/site.json';
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
     {depoimentos.items.map((item) => (
-      <GlassCard>
+      <Card>
         <div class="flex items-center gap-4 mb-6">
           <div class="w-12 h-12 rounded-full bg-surface-container-high border border-primary/30 flex items-center justify-center font-bold text-primary">
             {item.initials}
@@ -962,7 +1027,7 @@ import { depoimentos } from '../data/site.json';
         <p class="text-on-surface-variant/80 italic font-body-md leading-relaxed">
           &ldquo;{item.text}&rdquo;
         </p>
-      </GlassCard>
+      </Card>
     ))}
   </div>
 </section>
@@ -987,7 +1052,7 @@ git commit -m "feat: add Depoimentos section with 4 testimonials"
 ```astro
 ---
 import Button from './ui/Button.astro';
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { planos } from '../data/site.json';
 ---
 
@@ -1001,7 +1066,7 @@ import { planos } from '../data/site.json';
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-20">
     {planos.items.map((item) => (
-      <GlassCard
+      <Card
         hover={item.highlight}
         borderBottom
         class={`text-center ${item.highlight ? 'hover:-translate-y-0' : 'hover:-translate-y-2 transition-transform duration-300'} ${item.highlight ? 'scale-105 bg-surface-container-high ring-2 ring-primary/50 relative' : ''}`}
@@ -1030,7 +1095,7 @@ import { planos } from '../data/site.json';
         >
           {item.cta}
         </Button>
-      </GlassCard>
+      </Card>
     ))}
   </div>
 </section>
@@ -1054,7 +1119,9 @@ git commit -m "feat: add Planos section with VIP highlight card"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
+import Input from './ui/Input.astro';
+import Button from './ui/Button.astro';
 import { contato, contact } from '../data/site.json';
 ---
 
@@ -1078,7 +1145,7 @@ import { contato, contact } from '../data/site.json';
       </div>
 
       <!-- Form -->
-      <GlassCard padding="lg" class="shadow-2xl border-primary/20">
+      <Card class="p-10 shadow-2xl border-primary/20 glass-card">
         <h3 class="font-headline-md text-headline-md text-off-white mb-8 text-center">{contato.form.title}</h3>
         <form action={contato.form.formSubmitUrl} method="POST" class="space-y-6">
           <input type="hidden" name="_captcha" value="false" />
@@ -1086,44 +1153,41 @@ import { contato, contact } from '../data/site.json';
 
           <div>
             <label class="block font-label-md text-label-md text-on-surface-variant/80 mb-2">Nome Completo</label>
-            <input
+            <Input
               type="text"
               name="name"
               required
               placeholder="Seu nome"
-              class="w-full bg-surface-container-high border border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40"
+              class="w-full bg-surface-container-high border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary"
             />
           </div>
 
           <div>
             <label class="block font-label-md text-label-md text-on-surface-variant/80 mb-2">E-mail</label>
-            <input
+            <Input
               type="email"
               name="email"
               required
               placeholder="seu@email.com"
-              class="w-full bg-surface-container-high border border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40"
+              class="w-full bg-surface-container-high border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary"
             />
           </div>
 
           <div>
             <label class="block font-label-md text-label-md text-on-surface-variant/80 mb-2">WhatsApp</label>
-            <input
+            <Input
               type="tel"
               name="phone"
               placeholder="(21) 00000-0000"
-              class="w-full bg-surface-container-high border border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40"
+              class="w-full bg-surface-container-high border-outline-variant/30 rounded-full py-4 px-6 text-off-white focus:ring-2 focus:ring-primary focus:border-primary"
             />
           </div>
 
-          <button
-            type="submit"
-            class="w-full bg-primary text-on-primary font-bold py-5 rounded-full gold-glow transition-all uppercase tracking-widest text-sm active:scale-95"
-          >
+          <Button size="lg" class="w-full justify-center uppercase tracking-widest text-sm">
             {contato.form.submitLabel}
-          </button>
+          </Button>
         </form>
-      </GlassCard>
+      </Card>
     </div>
   </div>
 </section>
@@ -1147,7 +1211,7 @@ git commit -m "feat: add Contato section with FormSubmit form"
 
 ```astro
 ---
-import GlassCard from './ui/GlassCard.astro';
+import Card from './ui/Card.astro';
 import { clinica, contact } from '../data/site.json';
 ---
 
@@ -1175,7 +1239,7 @@ import { clinica, contact } from '../data/site.json';
           <p class="text-on-surface-variant/80 font-body-lg leading-relaxed">
             {clinica.localizacao.description}
           </p>
-          <GlassCard>
+          <Card>
             <p class="font-bold text-off-white mb-1">{clinica.localizacao.addressLabel}</p>
             <p class="text-on-surface-variant/70 mb-4">{contact.address.street}, {contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
             <a
@@ -1186,7 +1250,7 @@ import { clinica, contact } from '../data/site.json';
             >
               <span class="material-symbols-outlined">map</span> {clinica.localizacao.mapsLabel}
             </a>
-          </GlassCard>
+          </Card>
         </div>
       </div>
     </div>
@@ -1491,8 +1555,8 @@ git push
 
 - [x] **Spec coverage:** Cada seção da página tem um componente correspondente. SEO/schema no BaseLayout. Responsividade via Tailwind. Fora de escopo respeitado.
 - [x] **Placeholder scan:** Sem TBD ou TODO. `formSubmitUrl` e `googleMapsUrl` têm valores placeholder explícitos para serem preenchidos.
-- [x] **Type consistency:** `site.json` keys usadas consistentemente em todos os componentes. Props de Button e GlassCard definidas e usadas corretamente.
+- [x] **Type consistency:** `site.json` keys usadas consistentemente em todos os componentes. Props dos wrappers Astro (Button, Card, Input) mapeiam para shadcn/ui React components.
 
 ---
 
-**Plano concluído.** 19 tarefas, ~2-5 min cada. Build progressivo: cada task adiciona um componente e commita.
+**Plano concluído.** 20 tarefas, ~2-5 min cada. Build progressivo: cada task adiciona um componente e commita.
