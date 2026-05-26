@@ -1,0 +1,47 @@
+---
+import Button from './ui/Button.astro';
+import { brand, nav, contact } from '../data/site.json';
+---
+
+<header class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant/30 shadow-md">
+  <div class="flex justify-between items-center w-full px-container-padding-desktop py-4 max-w-container-max mx-auto">
+    <!-- Logo -->
+    <a href="/">
+      <img
+        src="/images/logo-longa.png"
+        alt={`Logo ${brand.name}`}
+        class="h-12"
+      />
+    </a>
+
+    <!-- Nav Links (desktop) -->
+    <nav class="hidden md:flex gap-8">
+      {nav.links.map((link) => (
+        <a
+          href={link.href}
+          class={`font-label-md text-label-md pb-1 transition-colors duration-300 ${
+            link.href === '#inicio'
+              ? 'text-primary font-bold border-b-2 border-primary'
+              : 'text-on-surface-variant/80 hover:text-primary'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-6">
+      <!-- Social Icons (desktop) -->
+      <div class="hidden lg:flex gap-4 text-on-surface-variant/70">
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer">chat</span>
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer">mail</span>
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer text-secondary">language</span>
+      </div>
+
+      <Button href={`https://wa.me/${contact.whatsapp}`}>
+        Agendar Avaliação
+      </Button>
+    </div>
+  </div>
+</header>
