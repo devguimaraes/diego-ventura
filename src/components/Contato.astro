@@ -1,5 +1,4 @@
 ---
-import Card from './ui/Card.astro';
 import Input from './ui/Input.astro';
 import Button from './ui/Button.astro';
 import { contato, contact } from '../data/site.json';
@@ -24,9 +23,9 @@ import { contato, contact } from '../data/site.json';
         </div>
       </div>
 
-      <Card class="p-8 lg:p-12 glass-card rounded-lg shadow-2xl border-primary/20">
-        <h3 class="font-manrope text-headline-md text-off-white mb-8 text-center">{contato.form.title}</h3>
-        <form action={contato.form.formSubmitUrl} method="POST" class="space-y-6">
+      <div class="glass-card p-10 lg:p-16 rounded-lg shadow-2xl border border-primary/20">
+        <h3 class="font-manrope text-headline-md text-off-white mb-10 text-center">{contato.form.title}</h3>
+        <form action={contato.form.formSubmitUrl} method="POST" class="space-y-8">
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <div>
@@ -45,7 +44,7 @@ import { contato, contact } from '../data/site.json';
             {contato.form.submitLabel}
           </Button>
         </form>
-      </Card>
+      </div>
     </div>
   </div>
 </section>
