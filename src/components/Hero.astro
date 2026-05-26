@@ -1,0 +1,53 @@
+---
+import Button from './ui/Button.astro';
+import { hero, contact } from '../data/site.json';
+---
+
+<section class="relative min-h-[85vh] flex items-center px-container-padding-desktop max-w-container-max mx-auto overflow-hidden pt-24">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+    <!-- Text content -->
+    <div class="z-10 order-2 lg:order-1">
+      <span class="text-primary font-label-md text-label-md tracking-widest uppercase block mb-4">
+        {hero.badge}
+      </span>
+      <h1 class="text-display-lg leading-tight text-off-white mb-6 max-w-lg">
+        <span class="text-primary">3 meses de atendimento VIP</span> para transformar seu corpo e sua saúde
+      </h1>
+      <p class="text-body-lg text-body-lg text-on-surface-variant/80 mb-8 max-w-lg">
+        {hero.description}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 items-center mb-6">
+        <div class="relative">
+          <Button href={`https://wa.me/${contact.whatsapp}`} size="lg">
+            {hero.cta} <span class="material-symbols-outlined">arrow_forward</span>
+          </Button>
+          <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <span class="bg-surface-container-highest text-primary text-[10px] font-bold px-3 py-1 rounded-full border border-primary/30 uppercase tracking-tighter">
+              {hero.promoLabel}
+            </span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1 text-center sm:text-left pt-6 sm:pt-0">
+          <div class="flex items-center gap-3">
+            <span class="text-primary font-bold text-2xl">{hero.price}</span>
+            <span class="text-on-surface-variant/40 text-sm">{hero.priceLabel}</span>
+          </div>
+          <div class="text-on-surface-variant/50 text-xs italic">
+            {hero.priceNote}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctor photo -->
+    <div class="relative order-1 lg:order-2 flex justify-center">
+      <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
+      <img
+        src="/images/hero-diego.jpg"
+        alt={hero.badge}
+        class="relative z-10 w-full max-w-md rounded-lg shadow-2xl transition-all duration-700"
+      />
+    </div>
+  </div>
+</section>
