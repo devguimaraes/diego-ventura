@@ -23,6 +23,7 @@ Thumbs.db
 
 # Superpowers
 .superpowers/
+.worktrees/
 
 # Debug
 *.log
