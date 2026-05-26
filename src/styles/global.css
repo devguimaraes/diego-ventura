@@ -15,7 +15,7 @@
   }
 
   body {
-    font-family: 'Inter', 'Manrope', sans-serif;
+    font-family: 'Manrope', sans-serif;
     @apply bg-background text-foreground antialiased;
   }
 
@@ -25,14 +25,14 @@
 }
 
 .glass-card {
-  background: rgba(26, 28, 30, 0.75);
+  background: rgba(20, 32, 50, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.2);
 }
 
 .gold-glow {
-  box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 24px rgba(201, 168, 76, 0.35);
 }
 
 .text-off-white {
