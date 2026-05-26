@@ -3,7 +3,7 @@ import Button from './ui/Button.astro';
 import { hero, contact } from '../data/site.json';
 ---
 
-<section class="relative min-h-[85vh] flex items-center px-container-padding-desktop max-w-container-max mx-auto overflow-hidden pt-24">
+<section class="relative min-h-[85vh] flex items-center px-container-padding-desktop max-w-container-max mx-auto pt-24 pb-16">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
     <!-- Text content -->
     <div class="z-10 order-2 lg:order-1">
@@ -14,10 +14,10 @@ import { hero, contact } from '../data/site.json';
         {hero.headlineLine1.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headlineLine1.split('VIP')[1]}<br />
         <span class="text-headline-lg">{hero.headlineLine2}</span>
       </h1>
-      <p class="text-body-lg text-on-surface-variant/80 mb-4 max-w-lg">
+      <p class="text-body-md text-on-surface-variant/80 mb-3 max-w-lg">
         {hero.description}
       </p>
-      <p class="text-body-md text-on-surface-variant/60 mb-8 max-w-lg">
+      <p class="text-body-md text-on-surface-variant/60 mb-6 max-w-lg">
         {hero.description2}
       </p>
 
@@ -27,7 +27,7 @@ import { hero, contact } from '../data/site.json';
             {hero.cta} <span class="material-symbols-outlined group-hover/button:translate-x-1 transition-transform">arrow_forward</span>
           </Button>
           <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <span class="bg-surface-container-highest text-primary text-[10px] font-bold px-3 py-1 rounded-full border border-primary/30 uppercase tracking-tighter">
+            <span class="bg-surface-container-highest text-primary text-xs font-bold px-4 py-1.5 rounded-full border border-primary/30 uppercase tracking-tighter z-10 relative">
               {hero.promoLabel}
             </span>
           </div>
@@ -45,7 +45,7 @@ import { hero, contact } from '../data/site.json';
     </div>
 
     <!-- Doctor photo -->
-    <div class="relative order-1 lg:order-2 flex justify-center">
+    <div class="relative order-1 lg:order-2 flex justify-center overflow-hidden">
       <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
       <img
         src="/images/hero-diego.jpg"
