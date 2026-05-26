@@ -4,9 +4,9 @@
 
 ```bash
 bun install          # package manager é Bun, não npm
-npx astro dev        # dev server em localhost:4321
-npx astro build      # build de produção → dist/
-npx astro check      # typecheck (0 erros = OK)
+bun run dev          # dev server em localhost:4321
+bun run build        # build de produção → dist/
+bunx astro check     # typecheck (0 erros = OK)
 npx shadcn@latest add <component>  # adicionar componente shadcn/ui
 ```
 
@@ -39,5 +39,5 @@ src/
 - **FormSubmit** processa o formulário de contato. URL em `site.json` → `contato.form.formSubmitUrl`
 - **Ícones**: Material Symbols via Google Fonts CDN (link no `<head>` do BaseLayout). Usar `<span class="material-symbols-outlined">nome_icone</span>`
 - **Imagens** em `public/` (estáticas). Vídeos em `public/videos/`. `.mp4` na raiz são gitignored
-- **Sem testes** — verificação é `npx astro build` com 0 erros + `npx astro check` limpo
+- **Sem testes** — verificação é `bun run build` com 0 erros + `bunx astro check` limpo
 - **Design system**: dark theme (`darkMode: 'class'` no Tailwind), cores Navy + Gold + Sage, fonte Manrope
