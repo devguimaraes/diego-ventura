@@ -1,0 +1,144 @@
+{
+  "brand": {
+    "name": "Dr. Dhiego Ventura",
+    "tagline": "Nutrição & Longevidade",
+    "crn": "23100286"
+  },
+  "contact": {
+    "whatsapp": "5521967239874",
+    "phone": "(21) 96723-9874",
+    "email": "contato@drventura.com.br",
+    "address": {
+      "street": "Av. Dom Hélder Câmara, 6644",
+      "neighborhood": "Pilares",
+      "city": "Rio de Janeiro",
+      "state": "RJ"
+    },
+    "hours": "Seg - Sex: 08:00 - 19:00",
+    "googleMapsUrl": "https://maps.app.goo.gl/YourLink"
+  },
+  "nav": {
+    "links": [
+      { "label": "Página Inicial", "href": "#inicio" },
+      { "label": "Sobre Nós", "href": "#sobre" },
+      { "label": "Depoimentos", "href": "#depoimentos" },
+      { "label": "Contato", "href": "#contato" }
+    ]
+  },
+  "hero": {
+    "badge": "Oportunidade Exclusiva",
+    "headline": "3 meses de atendimento VIP para transformar seu corpo e sua saúde",
+    "description": "Acompanhamento terapêutico intensivo com 3 consultas presenciais ou online e videochamadas quinzenais para garantir seus resultados.",
+    "cta": "Garantir minha vaga!",
+    "promoLabel": "Promoção válida durante o mês de Abril",
+    "price": "R$ 387,00",
+    "priceLabel": "Plano Completo",
+    "priceNote": "vs Consulta avulsa R$ 198,00"
+  },
+  "servicos": {
+    "title": "Serviços Oferecidos",
+    "items": [
+      {
+        "icon": "fitness_center",
+        "title": "Nutrição Esportiva",
+        "description": "Focada em performance, hipertrofia e definição corporal para atletas de todos os níveis.",
+        "link": "#"
+      },
+      {
+        "icon": "medication",
+        "title": "Suplementação",
+        "description": "Prescrição magistral de fórmulas personalizadas para saciedade e queima de gordura.",
+        "link": "#"
+      },
+      {
+        "icon": "spa",
+        "title": "Emagrecimento",
+        "description": "Protocolos exclusivos para perda de peso sustentável sem restrições extremas.",
+        "link": "#"
+      }
+    ],
+    "video": {
+      "title": "Vídeo Institucional",
+      "subtitle": "Conheça nosso método de trabalho"
+    }
+  },
+  "sobre": {
+    "name": "Dhiego Ventura",
+    "title": "Nutricionista e Terapeuta",
+    "paragraph1": "Dhiego Ventura é Nutricionista e Terapeuta, com atuação voltada para a transformação da saúde por meio da alimentação, da mudança de hábitos e do cuidado individualizado.",
+    "paragraph2": "Na Clínica Ventura, seu trabalho une nutrição clínica, emagrecimento e performance, sempre com uma abordagem humanizada, próxima e estratégica."
+  },
+  "vantagens": {
+    "title": "Vantagens do Atendimento",
+    "items": [
+      { "icon": "restaurant", "title": "Nutrição com Especialização", "description": "Foco em doenças metabólicas e equilíbrio hormonal." },
+      { "icon": "psychology", "title": "Terapia Alimentar", "description": "Mude sua relação emocional com a comida." },
+      { "icon": "support_agent", "title": "Apoio Contínuo", "description": "Acompanhamento próximo durante toda jornada." },
+      { "icon": "self_improvement", "title": "Mudança de Mentalidade", "description": "Resultados duradouros através do mindset." }
+    ]
+  },
+  "especialidades": {
+    "items": [
+      {
+        "title": "Nutricionista Estético",
+        "description": "Tratamento focado na redução de agravos estéticos como acne, melasma, celulite e fortalecimento de cabelos e unhas.",
+        "cta": "Saber Mais"
+      },
+      {
+        "title": "Controle da Diabetes",
+        "description": "Gestão nutricional especializada para diabetes tipo 1 e 2, focando em estabilidade glicêmica e qualidade de vida.",
+        "cta": "Saber Mais"
+      }
+    ]
+  },
+  "depoimentos": {
+    "title": "O que dizem nossos pacientes",
+    "items": [
+      { "initials": "MA", "name": "Meriane Araújo", "city": "Rio de Janeiro, RJ", "text": "Incrível, excelente profissional! Cumpre o que promete. Melhor nutricionista da vida!" },
+      { "initials": "PP", "name": "Pedro Peres", "city": "Rio de Janeiro, RJ", "text": "Excelente profissional, ambiente do consultório top!" },
+      { "initials": "GM", "name": "Gugu Marques", "city": "Rio de Janeiro, RJ", "text": "Atendimento top. Profissionalismo e conhecimento. O melhor nutricionista que já conheci." },
+      { "initials": "SS", "name": "Sérgio Serciozo", "city": "Rio de Janeiro, RJ", "text": "O Melhor Nutricionista da zona norte!!! Recomendo muito o trabalho." }
+    ]
+  },
+  "planos": {
+    "title": "Sua oportunidade de transformação",
+    "subtitle": "Se você sempre quis ter o acompanhamento de um profissional que realmente entenda suas expectativas... essa é a sua oportunidade.",
+    "items": [
+      { "icon": "fitness_center", "title": "Perder peso", "subtitle": "1200 - 1800 kcal", "cta": "Entre em Contato", "highlight": false },
+      { "icon": "workspace_premium", "title": "Atendimento VIP", "subtitle": "3 meses de acompanhamento", "price": "R$ 387,00", "cta": "Garantir Vaga VIP", "highlight": true, "badge": "Mais Procurado" },
+      { "icon": "trending_up", "title": "Ganhar peso", "subtitle": "2400 - 3600 kcal", "cta": "Entre em Contato", "highlight": false }
+    ]
+  },
+  "contato": {
+    "title": "Pronto para sua melhor versão?",
+    "description": "Conheça a clínica do Dr. Dhiego Ventura no Rio de Janeiro e agende sua consulta hoje mesmo para aproveitar o plano promocional.",
+    "form": {
+      "title": "Agende sua Consulta",
+      "submitLabel": "SOLICITAR AGENDAMENTO",
+      "formSubmitUrl": "https://formsubmit.co/SEU_EMAIL_AQUI"
+    }
+  },
+  "clinica": {
+    "title": "A Clínica",
+    "localizacao": {
+      "title": "Nossa Localização",
+      "description": "Estamos localizados em um ponto estratégico do Rio de Janeiro, no condomínio DHC Offices. Um espaço moderno e seguro para o seu conforto.",
+      "addressLabel": "Endereço:",
+      "mapsLabel": "Ver no Google Maps"
+    },
+    "consultorio": {
+      "title": "O Consultório",
+      "description": "Nosso consultório é equipado com tecnologias de ponta para bioimpedância e avaliação antropométrica, garantindo precisão em cada etapa do seu tratamento."
+    }
+  },
+  "footer": {
+    "description": "Transformando vidas através da nutrição de excelência e cuidado humanizado.",
+    "links": [
+      { "label": "Termos de Uso", "href": "#" },
+      { "label": "Política de Privacidade", "href": "#" },
+      { "label": "Agendar Consulta", "href": "#contato" },
+      { "label": "Especialidades", "href": "#especialidades" }
+    ],
+    "copyright": "© 2024 Dr. Dhiego Ventura - Nutricionista & Terapeuta. Todos os direitos reservados."
+  }
+}
