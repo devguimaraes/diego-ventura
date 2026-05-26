@@ -1,0 +1,15 @@
+---
+import { Input as ShadcnInput } from './input';
+
+export interface Props {
+  type?: string;
+  name?: string;
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { class: extraClass = '', ...props } = Astro.props;
+---
+
+<ShadcnInput client:load {...props} className={extraClass} />

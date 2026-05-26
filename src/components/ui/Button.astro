@@ -1,0 +1,24 @@
+---
+import { createElement } from 'react';
+import { Button as ShadcnButton } from './button';
+
+export interface Props {
+  variant?: 'default' | 'outline' | 'secondary' | 'ghost' | 'destructive' | 'link';
+  size?: 'default' | 'xs' | 'sm' | 'lg' | 'icon' | 'icon-xs' | 'icon-sm' | 'icon-lg';
+  href?: string;
+  class?: string;
+}
+
+const { variant = 'default', size = 'default', href, class: extraClass = '' } = Astro.props;
+const renderLink = href ? createElement('a', { href }) : undefined;
+---
+
+<ShadcnButton
+  variant={variant}
+  size={size}
+  render={renderLink}
+  client:load
+  className={extraClass}
+>
+  <slot />
+</ShadcnButton>

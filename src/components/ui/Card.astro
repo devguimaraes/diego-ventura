@@ -1,0 +1,14 @@
+---
+import { Card as ShadcnCard } from './card';
+
+export interface Props {
+  size?: 'default' | 'sm';
+  class?: string;
+}
+
+const { size = 'default', class: extraClass = '' } = Astro.props;
+---
+
+<ShadcnCard client:load size={size} className={extraClass}>
+  <slot />
+</ShadcnCard>
