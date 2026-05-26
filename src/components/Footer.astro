@@ -1,29 +1,43 @@
 ---
-import { footer, brand } from '../data/site.json';
+import { footer, contact, brand } from '../data/site.json';
 ---
 
-<footer class="py-12 px-16 bg-surface-container-low border-t border-outline-variant/30">
-  <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-    <div class="flex flex-col items-center md:items-start gap-4">
-      <img src="/images/logo-longa.png" alt={brand.name} class="h-10" />
-      <p class="font-inter text-sm text-on-surface-variant/40 max-w-xs text-center md:text-left">
-        {footer.description}
-      </p>
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 w-full py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-container-padding-desktop max-w-container-max mx-auto">
+    <div>
+      <img src="/images/logo-longa.png" alt={`Logo ${brand.name}`} class="h-14 mb-8" />
+      <p class="text-on-surface-variant/70 text-body-md mb-8 max-w-xs">{footer.description}</p>
+      <div class="flex gap-6">
+        <span class="material-symbols-outlined text-primary cursor-pointer hover:scale-125 transition-transform bg-primary/10 p-3 rounded-full">phone</span>
+        <span class="material-symbols-outlined text-primary cursor-pointer hover:scale-125 transition-transform bg-primary/10 p-3 rounded-full">mail</span>
+        <span class="material-symbols-outlined text-secondary cursor-pointer hover:scale-125 transition-transform bg-secondary/10 p-3 rounded-full">location_on</span>
+      </div>
     </div>
-    <nav class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3">
+    <div class="flex flex-col gap-4">
+      <h4 class="text-headline-md text-off-white mb-6">Links Úteis</h4>
       {footer.links.map((link) => (
-        <a
-          href={link.href}
-          class="font-manrope text-label-md text-on-surface-variant/60 hover:text-primary transition-colors duration-150"
-        >
-          {link.label}
-        </a>
+        <a href={link.href} class="text-on-surface-variant/70 hover:text-primary transition-colors text-label-md">{link.label}</a>
       ))}
-    </nav>
+    </div>
+    <div>
+      <h4 class="text-headline-md text-off-white mb-6">Contato</h4>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-secondary text-xl mt-1">location_on</span>
+          <p class="text-on-surface-variant/70 text-body-md">{contact.address.street}<br/>{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-secondary text-xl">call</span>
+          <p class="text-on-surface-variant/70 text-body-md">{contact.phone}</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-secondary text-xl">schedule</span>
+          <p class="text-on-surface-variant/70 text-body-md">{contact.hours}</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="mt-8 pt-6 border-t border-outline-variant/20 max-w-container-max mx-auto text-center">
-    <p class="font-inter text-sm text-on-surface-variant/40">
-      {footer.copyright}
-    </p>
+  <div class="mt-16 pt-8 border-t border-outline-variant/10 text-center px-container-padding-desktop max-w-container-max mx-auto">
+    <p class="text-on-surface-variant/50 text-label-md">{footer.copyright}</p>
   </div>
 </footer>
