@@ -1,17 +1,52 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Servicos from '../components/Servicos.astro';
+import Sobre from '../components/Sobre.astro';
+import Vantagens from '../components/Vantagens.astro';
+import Especialidades from '../components/Especialidades.astro';
+import Depoimentos from '../components/Depoimentos.astro';
+import Planos from '../components/Planos.astro';
+import Contato from '../components/Contato.astro';
+import Clinica from '../components/Clinica.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFAB from '../components/WhatsAppFAB.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Dr. Dhiego Ventura - Nutrição & Longevidade"
+  description="Transforme sua saúde com acompanhamento nutricional de excelência. Agende sua consulta com Dr. Dhiego Ventura no Rio de Janeiro."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Servicos />
+    <Sobre />
+    <Vantagens />
+    <Especialidades />
+    <Depoimentos />
+    <Planos />
+    <Contato />
+    <Clinica />
+  </main>
+  <Footer />
+  <WhatsAppFAB />
+</BaseLayout>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100');
+        entry.target.classList.remove('opacity-0', 'translate-y-10');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(section => {
+    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+    observer.observe(section);
+  });
+</script>
