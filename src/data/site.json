@@ -80,11 +80,19 @@
   "especialidades": {
     "items": [
       {
-        "title": "Nutricionista Estético",
-        "description": "Tratamento focado na redução de agravos estéticos como acne, melasma, celulite e fortalecimento de cabelos e unhas.",
+        "title": "Atendimento Humanizado",
+        "description": "Cada paciente recebe um plano nutricional único, construído a partir de uma escuta atenta às suas necessidades, objetivos e rotina diária.",
         "cta": "Saber Mais",
-        "image": "/images/especialidade-estetica.jpg"
+        "image": "/images/consultorio-2.jpg"
       },
+      {
+        "title": "Acompanhamento de Resultados",
+        "description": "Mais do que prescrever dietas, acompanhamos sua evolução de perto, com avaliações regulares e ajustes contínuos para garantir resultados que duram.",
+        "cta": "Saber Mais",
+        "image": "/images/consultorio-3.jpg"
+      }
+    ]
+  },
       {
         "title": "Controle da Diabetes",
         "description": "Gestão nutricional especializada para diabetes tipo 1 e 2, focando em estabilidade glicêmica e qualidade de vida.",
