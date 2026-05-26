@@ -96,10 +96,10 @@
   "depoimentos": {
     "title": "O que dizem nossos pacientes",
     "items": [
-      { "initials": "MA", "name": "Meriane Araújo", "city": "Rio de Janeiro, RJ", "text": "Incrível, excelente profissional! Cumpre o que promete. Melhor nutricionista da vida!" },
-      { "initials": "PP", "name": "Pedro Peres", "city": "Rio de Janeiro, RJ", "text": "Excelente profissional, ambiente do consultório top!" },
-      { "initials": "GM", "name": "Gugu Marques", "city": "Rio de Janeiro, RJ", "text": "Atendimento top. Profissionalismo e conhecimento. O melhor nutricionista que já conheci." },
-      { "initials": "SS", "name": "Sérgio Serciozo", "city": "Rio de Janeiro, RJ", "text": "O Melhor Nutricionista da zona norte!!! Recomendo muito o trabalho." }
+      { "initials": "PP", "name": "Pedro Peres", "city": "Rio de Janeiro, RJ", "text": "Excelente profissional, ambiente do consultório top!", "avatar": "/images/avatar-1.png" },
+      { "initials": "GM", "name": "Gugu Marques", "city": "Rio de Janeiro, RJ", "text": "Atendimento top. Profissionalismo e conhecimento. O melhor nutricionista que já conheci.", "avatar": "/images/avatar-2.png" },
+      { "initials": "SS", "name": "Sérgio Serciozo", "city": "Rio de Janeiro, RJ", "text": "O Melhor Nutricionista da zona norte!!! Recomendo muito o trabalho.", "avatar": "/images/avatar-3.png" },
+      { "initials": "MA", "name": "Meriane Araújo", "city": "Rio de Janeiro, RJ", "text": "Incrível, excelente profissional! Cumpre o que promete. Melhor nutricionista da vida!", "avatar": "/images/avatar-4.png" }
     ]
   },
   "planos": {
