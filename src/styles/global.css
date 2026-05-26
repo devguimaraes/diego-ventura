@@ -3,6 +3,8 @@
 @import '@fontsource/manrope/600.css';
 @import '@fontsource/manrope/700.css';
 @import '@fontsource/manrope/800.css';
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @tailwind base;
 @tailwind components;
@@ -11,10 +13,51 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply font-manrope;
   }
 
   body {
-    @apply bg-background text-on-background font-manrope antialiased;
+    @apply font-manrope antialiased bg-background text-foreground;
+  }
+
+  :root {
+    --background: oklch(0.187 0.041 258);
+    --foreground: oklch(0.914 0.037 265);
+    --card: oklch(0.187 0.041 258);
+    --card-foreground: oklch(0.914 0.037 265);
+    --popover: oklch(0.284 0.038 261);
+    --popover-foreground: oklch(0.914 0.037 265);
+    --primary: oklch(0.829 0.121 89);
+    --primary-foreground: oklch(0.310 0.063 89);
+    --secondary: oklch(0.818 0.080 161);
+    --secondary-foreground: oklch(0.301 0.066 162);
+    --muted: oklch(0.242 0.039 258);
+    --muted-foreground: oklch(0.827 0.029 81);
+    --accent: oklch(0.743 0.117 90);
+    --accent-foreground: oklch(0.370 0.076 89);
+    --destructive: oklch(0.838 0.089 27);
+    --destructive-foreground: oklch(0.328 0.134 27);
+    --border: oklch(0.397 0.026 86);
+    --input: oklch(0.656 0.028 85);
+    --ring: oklch(0.829 0.121 89);
+    --chart-1: oklch(0.829 0.121 89);
+    --chart-2: oklch(0.818 0.080 161);
+    --chart-3: oklch(0.743 0.117 90);
+    --chart-4: oklch(0.656 0.028 85);
+    --chart-5: oklch(0.397 0.026 86);
+    --radius: 1rem;
+    --sidebar: oklch(0.187 0.041 258);
+    --sidebar-foreground: oklch(0.914 0.037 265);
+    --sidebar-primary: oklch(0.829 0.121 89);
+    --sidebar-primary-foreground: oklch(0.310 0.063 89);
+    --sidebar-accent: oklch(0.242 0.039 258);
+    --sidebar-accent-foreground: oklch(0.827 0.029 81);
+    --sidebar-border: oklch(0.397 0.026 86);
+    --sidebar-ring: oklch(0.829 0.121 89);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 }
 
