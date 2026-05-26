@@ -1,43 +1,69 @@
-# Astro Starter Kit: Minimal
+# Dr. Dhiego Ventura — Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page de produção do nutricionista Dr. Dhiego Ventura. Site institucional single-page com tema dark premium, construído com Astro + Tailwind + shadcn/ui.
+
+## Início rápido
+
+```bash
+bun install        # Bun é o package manager
+bun run dev        # http://localhost:4321
+bun run build      # produção → dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+| Camada | Tecnologia |
+|--------|------------|
+| Framework | Astro 6 |
+| CSS | Tailwind CSS 3 (tokens customizados) |
+| UI | shadcn/ui v5 + React |
+| Runtime | Bun |
+| Ícones | Material Symbols (Google Fonts) |
+| Formulário | FormSubmit |
+| Fonte | Manrope |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Estrutura
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── pages/index.astro             # única página
+├── layouts/BaseLayout.astro      # shell HTML + SEO + schema.org
+├── components/
+│   ├── Header.astro              # navbar fixa
+│   ├── Hero.astro                # oferta VIP com preço e CTA
+│   ├── Servicos.astro            # serviços + vídeo institucional
+│   ├── Sobre.astro               # bio + CRN
+│   ├── Vantagens.astro           # 4 cards
+│   ├── Especialidades.astro      # split layouts (estética + diabetes)
+│   ├── Depoimentos.astro         # 4 testemunhos
+│   ├── Planos.astro              # 3 planos com destaque VIP
+│   ├── Contato.astro             # formulário + endereço
+│   ├── Clinica.astro             # galeria + localização
+│   ├── Footer.astro              # links e contato
+│   ├── WhatsAppFAB.astro         # botão flutuante
+│   └── ui/                       # wrappers Astro → shadcn (React)
+├── data/site.json                # conteúdo centralizado
+└── styles/global.css             # Tailwind + utilities
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Design System
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Fonte da verdade: `DESIGN.md`. Tokens de cor, tipografia e espaçamento replicados em `tailwind.config.ts`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+- **Tema:** dark premium (Navy `#071325`, Gold `#C9A84C`, Sage `#2D6A4F`)
+- **Fonte:** Manrope (headings + body)
+- **Ícones:** Material Symbols Outline
 
-## 🧞 Commands
+## Comandos
 
-All commands are run from the root of the project, from a terminal:
+| Comando | Ação |
+|---------|------|
+| `bun install` | Instalar dependências |
+| `bun run dev` | Dev server em localhost:4321 |
+| `bun run build` | Build de produção em dist/ |
+| `bunx astro check` | Typecheck |
+| `npx shadcn@latest add <cmp>` | Adicionar componente shadcn |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Deploy
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Configurado para deploy estático. Basta fazer o build e servir a pasta `dist/`. O `site` em `astro.config.ts` deve ser ajustado para o domínio real antes do deploy.
