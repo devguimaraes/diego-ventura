@@ -1,16 +1,31 @@
 ---
-import Button from './ui/Button.astro';
 import { especialidades } from '../data/site.json';
 ---
 
-<section id="especialidades" class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {especialidades.items.map((item) => (
-      <article class="p-10 rounded-lg border border-outline-variant/50 bg-surface-container hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] hover:border-primary/30 transition-all duration-300">
-        <h3 class="font-manrope text-headline-md text-on-surface mb-4">{item.title}</h3>
-        <p class="font-inter text-body-md text-on-surface-variant/80 mb-6">{item.description}</p>
-        <Button variant="outline" size="default">{item.cta}</Button>
-      </article>
-    ))}
-  </div>
+<section id="especialidades" class="py-section-gap">
+  {especialidades.items.map((item, index) => {
+    const isReversed = index % 2 === 1;
+    const bg = isReversed ? 'bg-background' : 'bg-surface-container-high';
+    const flexDir = isReversed ? 'lg:flex-row-reverse' : '';
+    return (
+      <div class={`flex flex-col ${flexDir} ${bg} h-auto min-h-[600px]`}>
+        <div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+          <h3 class="font-manrope text-headline-lg text-primary mb-6">{item.title}</h3>
+          <p class="font-manrope text-body-lg text-on-surface-variant/80 mb-10 max-w-md">
+            {item.description}
+          </p>
+          <button class="w-fit border-2 border-primary text-primary px-10 py-3 rounded-full font-manrope text-label-md hover:bg-primary hover:text-on-primary transition-all">
+            {item.cta}
+          </button>
+        </div>
+        <div class="lg:w-1/2 overflow-hidden min-h-[400px]">
+          <img
+            alt={item.title}
+            class="w-full h-full object-cover grayscale-50 hover:grayscale-0 transition-all duration-700"
+            src={item.image}
+          />
+        </div>
+      </div>
+    );
+  })}
 </section>
