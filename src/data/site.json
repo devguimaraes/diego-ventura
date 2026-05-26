@@ -93,14 +93,6 @@
       }
     ]
   },
-      {
-        "title": "Controle da Diabetes",
-        "description": "Gestão nutricional especializada para diabetes tipo 1 e 2, focando em estabilidade glicêmica e qualidade de vida.",
-        "cta": "Saber Mais",
-        "image": "/images/especialidade-diabetes.jpg"
-      }
-    ]
-  },
   "depoimentos": {
     "title": "O que dizem nossos pacientes",
     "items": [
