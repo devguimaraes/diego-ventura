@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Material Symbols -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={`{
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Dr. Dhiego Ventura - Nutricionista",
+      "description": "${description}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Dom Hélder Câmara, 6644",
+        "addressLocality": "Rio de Janeiro",
+        "addressRegion": "RJ"
+      },
+      "telephone": "+5521967239874",
+      "openingHours": "Mo-Fr 08:00-19:00"
+    }`} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
