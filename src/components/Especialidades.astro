@@ -1,34 +1,16 @@
 ---
 import Button from './ui/Button.astro';
 import { especialidades } from '../data/site.json';
-
-const images = [
-  '/images/especialidade-estetica.jpg',
-  '/images/especialidade-diabetes.jpg',
-];
 ---
 
-<section id="especialidades" class="py-section-gap">
-  {especialidades.items.map((item, i) => {
-    const isReversed = i % 2 === 1;
-    const bg = isReversed ? 'bg-background' : 'bg-surface-container-high';
-    const flexDir = isReversed ? 'flex-col lg:flex-row-reverse' : 'flex-col lg:flex-row';
-
-    return (
-      <div class={`flex ${flexDir} ${bg} h-auto min-h-[600px]`}>
-        <div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
-          <h3 class="text-headline-lg text-primary mb-6">{item.title}</h3>
-          <p class="text-body-lg text-on-surface-variant/80 mb-10 max-w-md">{item.description}</p>
-          <Button variant="outline" size="lg">{item.cta}</Button>
-        </div>
-        <div class="lg:w-1/2 overflow-hidden min-h-[400px]">
-          <img
-            src={images[i]}
-            alt={item.title}
-            class="w-full h-full object-cover grayscale-[50%] hover:grayscale-0 transition-all duration-700"
-          />
-        </div>
-      </div>
-    );
-  })}
+<section id="especialidades" class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {especialidades.items.map((item) => (
+      <article class="p-10 rounded-lg border border-outline-variant/50 bg-surface-container hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] hover:border-primary/30 transition-all duration-300">
+        <h3 class="font-manrope text-headline-md text-on-surface mb-4">{item.title}</h3>
+        <p class="font-inter text-body-md text-on-surface-variant/80 mb-6">{item.description}</p>
+        <Button variant="outline" size="default">{item.cta}</Button>
+      </article>
+    ))}
+  </div>
 </section>
