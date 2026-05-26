@@ -7,39 +7,41 @@ import { contato, contact } from '../data/site.json';
 
 <section id="contato" class="py-section-gap bg-surface-container-lowest relative">
   <div class="px-container-padding-desktop max-w-container-max mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
       <div>
-        <h2 class="font-manrope text-headline-lg text-on-surface mb-8 leading-tight">
+        <h2 class="font-manrope text-headline-lg text-off-white mb-8 leading-tight">
           {contato.title}
         </h2>
-        <p class="font-inter text-body-lg text-on-surface-variant/80 mb-8">{contato.description}</p>
+        <p class="font-manrope text-body-lg text-on-surface-variant/80 mb-8 max-w-md">
+          {contato.description}
+        </p>
         <div class="flex items-center gap-6 p-6 border border-primary/20 rounded-lg bg-surface-container-low mb-8">
           <span class="material-symbols-outlined text-secondary text-4xl">location_on</span>
           <div>
-            <p class="font-manrope font-bold text-on-surface">{contact.address.street}</p>
-            <p class="font-inter text-on-surface-variant/60">{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
+            <p class="font-manrope font-bold text-off-white">{contact.address.street}</p>
+            <p class="font-manrope text-on-surface-variant/60">{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
           </div>
         </div>
       </div>
 
-      <Card class="p-10 glass-card rounded-lg shadow-2xl">
-        <h3 class="font-manrope text-headline-md text-on-surface mb-8 text-center">{contato.form.title}</h3>
+      <Card class="p-8 lg:p-12 glass-card rounded-lg shadow-2xl border-primary/20">
+        <h3 class="font-manrope text-headline-md text-off-white mb-8 text-center">{contato.form.title}</h3>
         <form action={contato.form.formSubmitUrl} method="POST" class="space-y-6">
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2 uppercase tracking-wider">Nome Completo</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">Nome Completo</label>
             <Input type="text" name="name" required placeholder="Seu nome" class="w-full" />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2 uppercase tracking-wider">E-mail</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">E-mail</label>
             <Input type="email" name="email" required placeholder="seu@email.com" class="w-full" />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2 uppercase tracking-wider">WhatsApp</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">WhatsApp</label>
             <Input type="tel" name="phone" placeholder="(21) 00000-0000" class="w-full" />
           </div>
-          <Button size="lg" class="w-full h-12 justify-center uppercase tracking-widest font-manrope text-sm">
+          <Button size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">
             {contato.form.submitLabel}
           </Button>
         </form>
