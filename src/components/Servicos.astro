@@ -3,42 +3,54 @@ import { servicos } from '../data/site.json';
 ---
 
 <section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
-  <h2 class="font-manrope text-headline-lg text-on-surface mb-4 text-center">{servicos.title}</h2>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {servicos.items.map((item) => (
-      <div class="p-8 glass-card rounded-lg text-center hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] hover:border-primary/30 transition-all duration-300">
-        <span class="material-symbols-outlined text-4xl mb-4 text-primary">{item.icon}</span>
-        <h3 class="font-manrope text-headline-md text-on-surface mb-2">{item.title}</h3>
-        <p class="font-inter text-body-md text-on-surface-variant/80">{item.description}</p>
-      </div>
-    ))}
+  <div class="text-center mb-16">
+    <h2 class="font-manrope text-headline-lg text-off-white mb-4">{servicos.title}</h2>
+    <div class="h-1 w-20 bg-primary mx-auto"></div>
   </div>
 
-  <div class="mt-12 glass-card rounded-lg overflow-hidden">
-    <div class="relative w-full aspect-video">
-      <video
-        id="institutional-video"
-        src="/videos/video-institucional.mp4"
-        preload="metadata"
-        playsinline
-        class="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity duration-500"
-      ></video>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+    <!-- Left: Stacked service cards (7 cols) -->
+    <div class="lg:col-span-7 space-y-6">
+      {servicos.items.map((item) => (
+        <div class="glass-card p-8 rounded-lg group hover:border-primary transition-all duration-500 flex gap-6 items-start">
+          <span class="material-symbols-outlined text-secondary text-4xl mt-1">{item.icon}</span>
+          <div>
+            <h3 class="font-manrope text-headline-md text-primary mb-2">{item.title}</h3>
+            <p class="text-on-surface-variant/80 font-manrope text-body-md mb-4">{item.description}</p>
+            <a class="text-primary font-manrope text-label-md flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+              Saiba Mais <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
 
-      <div id="video-overlay" class="absolute inset-0 bg-surface-container-high/60 transition-opacity duration-500"></div>
+    <!-- Right: Video (5 cols) -->
+    <div class="lg:col-span-5 h-full min-h-[500px]">
+      <div class="relative w-full h-full rounded-lg overflow-hidden glass-card border-none flex items-center justify-center group cursor-pointer">
+        <video
+          id="institutional-video"
+          src="/videos/video-institucional.mp4"
+          preload="metadata"
+          playsinline
+          class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+        ></video>
 
-      <div id="video-labels" class="absolute bottom-6 left-6 z-20 transition-opacity duration-300">
-        <p class="text-primary font-bold text-lg mb-1">{servicos.video.title}</p>
-        <p class="text-off-white/80 text-sm">{servicos.video.subtitle}</p>
+        <div id="video-overlay" class="absolute inset-0 bg-surface-container-high/60 transition-opacity duration-500"></div>
+
+        <div id="video-labels" class="absolute bottom-6 left-6 z-20 transition-opacity duration-300">
+          <p class="text-primary font-bold text-lg mb-1">{servicos.video.title}</p>
+          <p class="text-off-white/80 text-sm">{servicos.video.subtitle}</p>
+        </div>
+
+        <button
+          id="video-play-btn"
+          class="relative z-10 w-20 h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+          aria-label="Reproduzir vídeo institucional"
+        >
+          <span class="material-symbols-outlined text-4xl leading-none">play_arrow</span>
+        </button>
       </div>
-
-      <button
-        id="video-play-btn"
-        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
-        aria-label="Reproduzir vídeo institucional"
-      >
-        <span class="material-symbols-outlined text-4xl leading-none">play_arrow</span>
-      </button>
     </div>
   </div>
 </section>
