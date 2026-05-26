@@ -7,7 +7,7 @@
   "contact": {
     "whatsapp": "5521967239874",
     "phone": "(21) 96723-9874",
-    "email": "contato@drventura.com.br",
+    "email": "nutricionistadiegoventura9@gmail.com",
     "address": {
       "street": "Av. Dom Hélder Câmara, 6644",
       "neighborhood": "Pilares",
@@ -15,7 +15,7 @@
       "state": "RJ"
     },
     "hours": "Seg - Sex: 08:00 - 19:00",
-    "googleMapsUrl": "https://maps.app.goo.gl/YourLink"
+    "googleMapsUrl": "https://www.google.com/maps/place/Nutricionista+Dhiego+Ventura/@-22.8815552,-43.2931355,15z/"
   },
   "nav": {
     "links": [
@@ -116,7 +116,7 @@
     "form": {
       "title": "Agende sua Consulta",
       "submitLabel": "SOLICITAR AGENDAMENTO",
-      "formSubmitUrl": "https://formsubmit.co/SEU_EMAIL_AQUI"
+      "formSubmitUrl": "https://formsubmit.co/nutricionistadiegoventura9@gmail.com"
     }
   },
   "clinica": {
@@ -140,6 +140,6 @@
       { "label": "Agendar Consulta", "href": "#contato" },
       { "label": "Especialidades", "href": "#especialidades" }
     ],
-    "copyright": "© 2024 Dr. Dhiego Ventura - Nutricionista & Terapeuta. Todos os direitos reservados."
+    "copyright": "© 2026 Dr. Dhiego Ventura - Nutricionista & Terapeuta. Todos os direitos reservados."
   }
 }
