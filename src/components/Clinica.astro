@@ -39,11 +39,15 @@ import { clinica, contact } from '../data/site.json';
         <span class="material-symbols-outlined">stethoscope</span> {clinica.consultorio.title}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[1, 2, 3].map((n) => (
-          <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
-            <img src={`/images/consultorio-${n}.jpg`} alt={`Atendimento ${n}`} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-          </div>
-        ))}
+        <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
+          <img src="/images/consultorio-1.jpg" alt="Atendimento 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </div>
+        <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
+          <img src="/images/atendimento-consultorio-5.jpeg" alt="Atendimento 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </div>
+        <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
+          <img src="/images/atendimento-consultorio-6.jpeg" alt="Atendimento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </div>
       </div>
       <p class="text-center text-on-surface-variant/60 font-manrope text-body-md mt-8 max-w-2xl mx-auto">
         {clinica.consultorio.description}
