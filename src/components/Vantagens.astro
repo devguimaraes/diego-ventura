@@ -1,0 +1,17 @@
+---
+import Card from './ui/Card.astro';
+import { vantagens } from '../data/site.json';
+---
+
+<section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
+  <h2 class="text-headline-lg text-off-white text-center mb-16">{vantagens.title}</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+    {vantagens.items.map((item) => (
+      <Card class="text-center p-8 glass-card border-none hover:bg-surface-container transition-all">
+        <span class="material-symbols-outlined text-secondary text-5xl mb-6">{item.icon}</span>
+        <h4 class="text-label-md text-primary mb-3 uppercase tracking-wider">{item.title}</h4>
+        <p class="text-sm text-on-surface-variant/70">{item.description}</p>
+      </Card>
+    ))}
+  </div>
+</section>
