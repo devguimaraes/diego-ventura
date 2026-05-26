@@ -1,29 +1,53 @@
 ---
 import { clinica, contact } from '../data/site.json';
-
-const addressQuery = encodeURIComponent(
-  `${contact.address.street}, ${contact.address.neighborhood}, ${contact.address.city} - ${contact.address.state}`
-);
-const mapsEmbedUrl = `https://www.google.com/maps?q=${addressQuery}&output=embed`;
 ---
 
-<section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
-  <h2 class="font-manrope text-headline-lg text-on-surface mb-4">{clinica.title}</h2>
-  <div class="bg-surface-container p-6 rounded-lg border border-outline-variant/50">
-    <p class="font-inter text-body-md text-on-surface-variant/80">
-      {contact.address.street}, {contact.address.neighborhood}, {contact.address.city} - {contact.address.state}
-    </p>
-    <div class="rounded-lg overflow-hidden border border-outline-variant/50 mt-6">
-      <iframe
-        src={mapsEmbedUrl}
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title={clinica.localizacao.title}
-      ></iframe>
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+  <div class="px-container-padding-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-manrope text-headline-lg text-off-white mb-4">{clinica.title}</h2>
+      <div class="h-1 w-20 bg-primary mx-auto"></div>
+    </div>
+
+    <!-- Localização -->
+    <div class="mb-20">
+      <h3 class="font-manrope text-headline-md text-primary mb-8 flex items-center gap-3">
+        <span class="material-symbols-outlined">location_on</span> {clinica.localizacao.title}
+      </h3>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+        <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
+          <img src="/images/clinica-entrada.jpg" alt="Entrada Clínica Ventura" class="w-full h-full object-cover" />
+        </div>
+        <div class="space-y-6">
+          <p class="text-on-surface-variant/80 font-manrope text-body-lg leading-relaxed">
+            {clinica.localizacao.description}
+          </p>
+          <div class="p-6 glass-card rounded-lg">
+            <p class="font-bold text-off-white mb-1">{clinica.localizacao.addressLabel}</p>
+            <p class="text-on-surface-variant/70 mb-4">{contact.address.street}, {contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
+            <a href={contact.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary font-bold hover:underline">
+              <span class="material-symbols-outlined">map</span> {clinica.localizacao.mapsLabel}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- O Consultório -->
+    <div>
+      <h3 class="font-manrope text-headline-md text-primary mb-8 flex items-center gap-3">
+        <span class="material-symbols-outlined">stethoscope</span> {clinica.consultorio.title}
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[1, 2, 3].map((n) => (
+          <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
+            <img src={`/images/consultorio-${n}.jpg`} alt={`Atendimento ${n}`} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-on-surface-variant/60 font-manrope text-body-md mt-8 max-w-2xl mx-auto">
+        {clinica.consultorio.description}
+      </p>
     </div>
   </div>
 </section>
