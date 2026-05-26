@@ -1,41 +1,46 @@
 ---
 import Button from './ui/Button.astro';
-import Card from './ui/Card.astro';
 import { planos } from '../data/site.json';
 ---
 
 <section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
   <div class="text-center mb-16">
-    <h2 class="text-headline-lg text-off-white mb-4">{planos.title}</h2>
-    <p class="text-on-surface-variant/70 max-w-2xl mx-auto text-body-lg">
+    <h2 class="text-headline-lg text-on-surface mb-4">{planos.title}</h2>
+    <p class="font-inter text-body-md text-on-surface-variant/70 max-w-2xl mx-auto">
       {planos.subtitle} <span class="text-primary font-bold">{planos.subtitleHighlight}</span>
     </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-20">
-    {planos.items.map((item) => (
-      <Card class={`text-center p-10 glass-card rounded-lg border-b-4 border-b-primary ${item.highlight ? 'scale-105 bg-surface-container-high ring-2 ring-primary/50 relative' : 'hover:-translate-y-2 transition-transform duration-300'}`}>
-        {item.highlight && (
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-            {item.badge}
-          </div>
-        )}
-        <span class={`material-symbols-outlined text-5xl mb-6 ${item.highlight ? 'text-primary' : 'text-secondary'}`}>
-          {item.icon}
-        </span>
-        <h3 class="text-headline-md text-off-white mb-2">{item.title}</h3>
-        {item.price ? (
-          <>
-            <p class="text-primary font-bold text-xl mb-1">{item.price}</p>
-            <p class="text-on-surface-variant/60 mb-8 text-sm">{item.subtitle}</p>
-          </>
-        ) : (
-          <p class="text-on-surface-variant/60 mb-8">{item.subtitle}</p>
-        )}
-        <Button variant={item.highlight ? 'default' : 'outline'} size="lg" class="w-full justify-center">
-          {item.cta}
-        </Button>
-      </Card>
-    ))}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+    {planos.items.map((item) => {
+      const isVip = item.highlight;
+      const cardClasses = isVip
+        ? 'p-10 bg-surface-container rounded-lg border border-outline-variant/50 text-center ring-2 ring-primary/40 scale-[1.02] z-10 relative hover:-translate-y-1.5 hover:ring-primary/50 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] transition-all duration-300'
+        : 'p-10 bg-surface-container rounded-lg border border-outline-variant/50 text-center hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] hover:border-primary/30 transition-all duration-300';
+      return (
+        <div class={cardClasses}>
+          {item.badge && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1 rounded-full font-manrope text-xs font-bold uppercase tracking-widest">
+              {item.badge}
+            </div>
+          )}
+          <span class={`material-symbols-outlined text-5xl mb-6 ${isVip ? 'text-primary' : 'text-secondary'}`}>
+            {item.icon}
+          </span>
+          <h3 class="font-manrope text-headline-md text-on-surface mb-2">{item.title}</h3>
+          {item.price ? (
+            <>
+              <p class="font-manrope text-primary font-bold text-2xl mb-1">{item.price}</p>
+              <p class="font-inter text-sm text-on-surface-variant/60 mb-8">{item.subtitle}</p>
+            </>
+          ) : (
+            <p class="font-inter text-sm text-on-surface-variant/60 mb-8">{item.subtitle}</p>
+          )}
+          <Button variant={isVip ? 'default' : 'outline'} size="lg" class="w-full justify-center">
+            {item.cta}
+          </Button>
+        </div>
+      );
+    })}
   </div>
 </section>
