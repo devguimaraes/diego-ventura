@@ -1,0 +1,42 @@
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/manrope/800.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-on-background font-manrope antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(20, 32, 50, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .gold-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .gold-glow:hover {
+    box-shadow: 0 0 25px rgba(201, 168, 76, 0.4);
+  }
+}
+
+@layer utilities {
+  .text-off-white {
+    color: #F5F0E8;
+  }
+}
