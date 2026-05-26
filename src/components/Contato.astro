@@ -25,19 +25,19 @@ import { contato, contact } from '../data/site.json';
 
       <div class="glass-card p-10 lg:p-16 rounded-lg shadow-2xl border border-primary/20">
         <h3 class="font-manrope text-headline-md text-off-white mb-10 text-center">{contato.form.title}</h3>
-        <form action={contato.form.formSubmitUrl} method="POST" class="space-y-8">
+        <form action={contato.form.formSubmitUrl} method="POST" class="space-y-10">
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">Nome Completo</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">Nome Completo</label>
             <Input type="text" name="name" required placeholder="Seu nome" class="w-full" />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">E-mail</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">E-mail</label>
             <Input type="email" name="email" required placeholder="seu@email.com" class="w-full" />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-2">WhatsApp</label>
+            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">WhatsApp</label>
             <Input type="tel" name="phone" placeholder="(21) 00000-0000" class="w-full" />
           </div>
           <Button size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">
