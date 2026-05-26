@@ -10,11 +10,15 @@ import { hero, contact } from '../data/site.json';
       <span class="text-primary font-label-md text-label-md tracking-widest uppercase block mb-4">
         {hero.badge}
       </span>
-      <h1 class="font-display-lg text-display-lg text-off-white mb-6 leading-tight">
-        {hero.headline.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headline.split('VIP')[1]}
+      <h1 class="text-display-lg text-off-white mb-4 leading-tight">
+        {hero.headlineLine1.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headlineLine1.split('VIP')[1]}<br />
+        <span class="text-headline-lg">{hero.headlineLine2}</span>
       </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant/80 mb-8 max-w-lg">
+      <p class="text-body-lg text-on-surface-variant/80 mb-4 max-w-lg">
         {hero.description}
+      </p>
+      <p class="text-body-md text-on-surface-variant/60 mb-8 max-w-lg">
+        {hero.description2}
       </p>
 
       <div class="flex flex-col sm:flex-row gap-6 items-center mb-6">

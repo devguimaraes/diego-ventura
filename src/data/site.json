@@ -28,7 +28,10 @@
   "hero": {
     "badge": "Oportunidade Exclusiva",
     "headline": "3 meses de atendimento VIP para transformar seu corpo e sua saúde",
-    "description": "Acompanhamento terapêutico intensivo com 3 consultas presenciais ou online e videochamadas quinzenais para garantir seus resultados.",
+    "headlineLine1": "3 meses de atendimento VIP",
+    "headlineLine2": "Para transformar seu corpo e sua saúde",
+    "description": "Na Clínica Ventura, com atendimento do nutricionista Dhiego Ventura, você pode iniciar 3 meses de atendimento VIP com um acompanhamento mais próximo, exclusivo e personalizado para transformar seu corpo e sua saúde com mais constância e direcionamento.",
+    "description2": "Ao longo desse período, você terá três consultas presenciais, uma videochamada a cada quinze dias via WhatsApp, em um plano pensado para quem quer resultados com mais cuidado, atenção e estratégia. Se você sempre quis ter o acompanhamento de um profissional que realmente entenda suas expectativas e se importe com a sua evolução, essa é a sua oportunidade.",
     "cta": "Garantir minha vaga!",
     "promoLabel": "Promoção válida durante os meses de Junho e Julho",
     "price": "R$ 387,00",
