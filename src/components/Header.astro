@@ -1,31 +1,47 @@
 ---
-import { nav } from '../data/site.json';
+import Button from './ui/Button.astro';
+import { brand, nav, contact } from '../data/site.json';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 h-20 bg-background/90 backdrop-blur-md border-b border-outline-variant/30">
-  <div class="h-full px-container-padding-desktop max-w-container-max mx-auto flex items-center justify-between">
+<header class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant/30 shadow-md">
+  <div class="flex justify-between items-center w-full px-container-padding-desktop py-4 max-w-container-max mx-auto">
     <!-- Logo -->
-    <a href="#" class="flex items-center gap-2">
-      <span class="font-manrope text-label-md text-primary uppercase tracking-widest font-semibold">
-        Dr. Dhiego Ventura
-      </span>
+    <a href="/">
+      <img
+        src="/images/logo-longa.png"
+        alt={`Logo ${brand.name}`}
+        class="h-12"
+      />
     </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      {nav.links.map((item) => (
+    <!-- Nav Links (desktop) -->
+    <nav class="hidden md:flex gap-8">
+      {nav.links.map((link) => (
         <a
-          href={item.href}
-          class="font-manrope text-label-md text-on-surface-variant uppercase tracking-wider hover:text-primary hover:-translate-y-px transition-all duration-150"
+          href={link.href}
+          class={`font-label-md text-label-md pb-1 transition-colors duration-300 ${
+            link.href === '#inicio'
+              ? 'text-primary font-bold border-b-2 border-primary'
+              : 'text-on-surface-variant/80 hover:text-primary'
+          }`}
         >
-          {item.label}
+          {link.label}
         </a>
       ))}
     </nav>
 
-    <!-- Mobile menu button -->
-    <button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
-      <span class="material-symbols-outlined text-2xl">menu</span>
-    </button>
+    <!-- Right side -->
+    <div class="flex items-center gap-6">
+      <!-- Social Icons (desktop) -->
+      <div class="hidden lg:flex gap-4 text-on-surface-variant/70">
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer">chat</span>
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer">mail</span>
+        <span class="material-symbols-outlined hover:text-primary cursor-pointer text-secondary">language</span>
+      </div>
+
+      <Button href={`https://wa.me/${contact.whatsapp}`}>
+        Agendar Avaliação
+      </Button>
+    </div>
   </div>
 </header>
