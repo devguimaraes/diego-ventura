@@ -2,14 +2,14 @@
 import { vantagens } from '../data/site.json';
 ---
 
-<section class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
-  <h2 class="text-headline-lg text-on-surface text-center mb-16">{vantagens.title}</h2>
+<section class="py-section-gap container-main">
+  <h2 class="text-headline-lg text-foreground text-center mb-16">{vantagens.title}</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {vantagens.items.map((item) => (
-      <div class="flex flex-col items-center">
-        <span class="material-symbols-outlined text-4xl text-primary mb-4">{item.icon}</span>
-        <h3 class="font-manrope text-headline-md text-on-surface mb-2 text-center">{item.title}</h3>
-        <p class="font-inter text-body-md text-on-surface-variant/80 text-center">{item.description}</p>
+      <div class="flex flex-col items-center group cursor-default">
+        <span class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(230,195,100,0.4)] transition-all duration-300">{item.icon}</span>
+        <h3 class="font-manrope text-headline-md text-foreground mb-2 text-center">{item.title}</h3>
+        <p class="font-manrope text-body-md text-on-surface-variant/80 text-center">{item.description}</p>
       </div>
     ))}
   </div>

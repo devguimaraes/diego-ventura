@@ -4,26 +4,26 @@ import { contato, contact } from '../data/site.json';
 ---
 
 <section id="contato" class="py-section-gap bg-surface-container-lowest relative">
-  <div class="px-container-padding-desktop max-w-container-max mx-auto relative z-10">
+  <div class="container-main relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
       <div>
-        <h2 class="font-manrope text-headline-lg text-off-white mb-8 leading-tight">
+        <h2 class="font-manrope text-headline-lg text-foreground mb-8 leading-tight">
           {contato.title}
         </h2>
         <p class="font-manrope text-body-lg text-on-surface-variant/80 mb-8 max-w-md">
           {contato.description}
         </p>
-        <div class="flex items-center gap-6 p-6 border border-primary/20 rounded-lg bg-surface-container-low mb-8">
+        <div class="flex items-center gap-6 p-6 rounded-lg bg-surface-container-low border border-outline-variant/20 mb-8">
           <span class="material-symbols-outlined text-secondary text-4xl">location_on</span>
           <div>
-            <p class="font-manrope font-bold text-off-white">{contact.address.street}</p>
+            <p class="font-manrope font-bold text-foreground">{contact.address.street}</p>
             <p class="font-manrope text-on-surface-variant/60">{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
           </div>
         </div>
       </div>
 
-      <div class="glass-card p-10 lg:p-16 rounded-lg shadow-2xl border border-primary/20">
-        <h3 class="font-manrope text-headline-md text-off-white mb-10 text-center">{contato.form.title}</h3>
+      <div class="glass-card p-10 lg:p-16 rounded-lg shadow-2xl">
+        <h3 class="font-manrope text-headline-md text-foreground mb-10 text-center">{contato.form.title}</h3>
         <form action={contato.form.formSubmitUrl} method="POST" class="space-y-10">
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
@@ -34,7 +34,7 @@ import { contato, contact } from '../data/site.json';
               name="name"
               required
               placeholder="Seu nome"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
             />
           </div>
           <div>
@@ -44,7 +44,7 @@ import { contato, contact } from '../data/site.json';
               name="email"
               required
               placeholder="seu@email.com"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
             />
           </div>
           <div>
@@ -53,7 +53,7 @@ import { contato, contact } from '../data/site.json';
               type="tel"
               name="phone"
               placeholder="(21) 00000-0000"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
             />
           </div>
           <Button size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">

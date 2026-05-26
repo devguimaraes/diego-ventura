@@ -3,14 +3,14 @@ import Button from './ui/Button.astro';
 import { hero, contact } from '../data/site.json';
 ---
 
-<section class="relative min-h-[85vh] flex items-center px-container-padding-desktop max-w-container-max mx-auto pt-24 pb-16">
+<section id="hero" class="relative min-h-[85vh] flex items-center container-main pt-24 pb-16">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
     <!-- Text content -->
     <div class="z-10 order-2 lg:order-1">
-      <span class="text-primary font-label-md text-label-md tracking-widest uppercase block mb-4">
+      <span class="text-primary font-medium text-label-md tracking-widest uppercase block mb-4">
         {hero.badge}
       </span>
-      <h1 class="text-display-lg text-off-white mb-4 leading-tight">
+      <h1 class="text-display-lg text-foreground mb-4 leading-tight">
         {hero.headlineLine1.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headlineLine1.split('VIP')[1]}<br />
         <span class="text-headline-lg">{hero.headlineLine2}</span>
       </h1>
@@ -50,7 +50,10 @@ import { hero, contact } from '../data/site.json';
       <img
         src="/images/hero-diego.jpg"
         alt={hero.badge}
-        class="relative z-10 w-full max-w-md rounded-lg shadow-2xl transition-all duration-700"
+        class="hero-image relative z-10 w-full max-w-md rounded-lg shadow-2xl transition-all duration-700"
+        width="600"
+        height="750"
+        loading="eager"
       />
     </div>
   </div>

@@ -1,0 +1,94 @@
+---
+interface Props {
+  links: { label: string; href: string }[]
+}
+
+const { links } = Astro.props
+---
+
+<!-- Mobile Menu Button -->
+<button 
+  id="mobile-menu-btn"
+  class="md:hidden inline-flex items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-semibold whitespace-nowrap uppercase tracking-wider outline-none select-none transition-all duration-200 ease-out focus-visible:ring-2 focus-visible:ring-primary/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-40 size-10 bg-surface-container-high"
+  aria-label="Abrir menu"
+  aria-expanded="false"
+  aria-controls="mobile-menu-drawer"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</button>
+
+<!-- Mobile Menu Drawer -->
+<div 
+  id="mobile-menu-drawer"
+  class="fixed inset-y-0 right-0 z-50 w-[300px] bg-surface-container border-l border-outline-variant/30 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu de navegação"
+>
+  <div class="flex flex-col h-full p-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-foreground font-manrope text-headline-md">Menu</h2>
+      <button 
+        id="mobile-menu-close"
+        class="inline-flex items-center justify-center rounded-full size-10 hover:bg-surface-container-high transition-colors"
+        aria-label="Fechar menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="flex flex-col gap-2 flex-1">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="px-4 py-3 rounded-lg text-foreground hover:bg-surface-container-high hover:text-primary transition-colors duration-200 font-medium mobile-menu-link"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div 
+  id="mobile-menu-backdrop"
+  class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const drawer = document.getElementById('mobile-menu-drawer');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const links = document.querySelectorAll('.mobile-menu-link');
+
+  function openMenu() {
+    drawer?.classList.remove('translate-x-full');
+    backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+    btn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    drawer?.classList.add('translate-x-full');
+    backdrop?.classList.add('opacity-0', 'pointer-events-none');
+    btn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  links.forEach(link => link.addEventListener('click', closeMenu));
+</script>

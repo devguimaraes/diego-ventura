@@ -2,25 +2,25 @@
 import { depoimentos } from '../data/site.json';
 ---
 
-<section id="depoimentos" class="py-section-gap px-container-padding-desktop max-w-container-max mx-auto">
-  <h2 class="text-headline-lg text-on-surface text-center mb-16">{depoimentos.title}</h2>
+<section id="depoimentos" class="py-section-gap container-main">
+  <h2 class="text-headline-lg text-foreground text-center mb-16">{depoimentos.title}</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     {depoimentos.items.map((item) => (
-      <div class="p-8 bg-surface-container rounded-lg border border-outline-variant/50 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+      <div class="p-8 bg-surface-container rounded-lg border border-outline-variant/50 hover:-translate-y-1 hover:shadow-luxury transition-all duration-300">
         <div class="flex items-center gap-4 mb-6">
           {item.avatar ? (
-            <img src={item.avatar} alt={item.name} class="w-12 h-12 rounded-full object-cover border border-primary/30" loading="lazy" />
+            <img src={item.avatar} alt={item.name} class="w-12 h-12 rounded-full object-cover border border-primary/30" loading="lazy" width="48" height="48" />
           ) : (
             <div class="w-12 h-12 rounded-full bg-surface-container-high border border-primary/30 flex items-center justify-center font-bold text-primary">
               {item.initials}
             </div>
           )}
           <div>
-            <p class="font-manrope font-semibold text-on-surface">{item.name}</p>
-            <p class="font-inter text-sm text-on-surface-variant/60">{item.city}</p>
+            <p class="font-manrope font-semibold text-foreground">{item.name}</p>
+            <p class="font-manrope text-sm text-on-surface-variant/60">{item.city}</p>
           </div>
         </div>
-        <p class="font-inter text-body-md text-on-surface-variant/80 italic mt-4">
+        <p class="font-manrope text-body-md text-on-surface-variant/80 italic mt-4">
           &ldquo;{item.text}&rdquo;
         </p>
       </div>

@@ -3,9 +3,9 @@ import { clinica, contact } from '../data/site.json';
 ---
 
 <section class="py-section-gap bg-surface-container-low overflow-hidden">
-  <div class="px-container-padding-desktop max-w-container-max mx-auto">
+  <div class="container-main">
     <div class="text-center mb-16">
-      <h2 class="font-manrope text-headline-lg text-off-white mb-4">{clinica.title}</h2>
+      <h2 class="font-manrope text-headline-lg text-foreground mb-4">{clinica.title}</h2>
       <div class="h-1 w-20 bg-primary mx-auto"></div>
     </div>
 
@@ -16,14 +16,14 @@ import { clinica, contact } from '../data/site.json';
       </h3>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
         <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
-          <img src="/images/clinica-entrada.jpg" alt="Entrada Clínica Ventura" class="w-full h-full object-cover" />
+          <img src="/images/clinica-entrada.jpg" alt="Entrada Clínica Ventura" class="w-full h-full object-cover" width="600" height="450" />
         </div>
         <div class="space-y-6">
           <p class="text-on-surface-variant/80 font-manrope text-body-lg leading-relaxed">
             {clinica.localizacao.description}
           </p>
           <div class="p-6 glass-card rounded-lg">
-            <p class="font-bold text-off-white mb-1">{clinica.localizacao.addressLabel}</p>
+            <p class="font-bold text-foreground mb-1">{clinica.localizacao.addressLabel}</p>
             <p class="text-on-surface-variant/70 mb-4">{contact.address.street}, {contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
             <a href={contact.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary font-bold hover:underline">
               <span class="material-symbols-outlined">map</span> {clinica.localizacao.mapsLabel}
@@ -40,13 +40,13 @@ import { clinica, contact } from '../data/site.json';
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
-          <img src="/images/consultorio-1.jpg" alt="Atendimento 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/consultorio-1.jpg" alt="Atendimento 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width="400" height="533" />
         </div>
         <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
-          <img src="/images/atendimento-consultorio-5.jpeg" alt="Atendimento 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/atendimento-consultorio-5.jpeg" alt="Atendimento 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width="400" height="533" />
         </div>
         <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg group">
-          <img src="/images/atendimento-consultorio-6.jpeg" alt="Atendimento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/atendimento-consultorio-6.jpeg" alt="Atendimento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width="400" height="533" />
         </div>
       </div>
       <p class="text-center text-on-surface-variant/60 font-manrope text-body-md mt-8 max-w-2xl mx-auto">
