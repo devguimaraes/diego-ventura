@@ -1,5 +1,4 @@
 ---
-import Input from './ui/Input.astro';
 import Button from './ui/Button.astro';
 import { contato, contact } from '../data/site.json';
 ---
@@ -30,15 +29,32 @@ import { contato, contact } from '../data/site.json';
           <input type="hidden" name="_template" value="table" />
           <div>
             <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">Nome Completo</label>
-            <Input type="text" name="name" required placeholder="Seu nome" class="w-full" />
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Seu nome"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+            />
           </div>
           <div>
             <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">E-mail</label>
-            <Input type="email" name="email" required placeholder="seu@email.com" class="w-full" />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="seu@email.com"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+            />
           </div>
           <div>
             <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">WhatsApp</label>
-            <Input type="tel" name="phone" placeholder="(21) 00000-0000" class="w-full" />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="(21) 00000-0000"
+              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-off-white placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all"
+            />
           </div>
           <Button size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">
             {contato.form.submitLabel}
