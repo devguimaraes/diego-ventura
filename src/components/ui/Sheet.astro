@@ -1,4 +1,6 @@
 ---
+import { contact, brand, footer } from '../../data/site.json';
+
 interface Props {
   links: { label: string; href: string }[]
 }
@@ -9,53 +11,66 @@ const { links } = Astro.props
 <!-- Mobile Menu Button -->
 <button 
   id="mobile-menu-btn"
-  class="md:hidden inline-flex items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-semibold whitespace-nowrap uppercase tracking-wider outline-none select-none transition-all duration-200 ease-out focus-visible:ring-2 focus-visible:ring-primary/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-40 size-10 bg-surface-container-high"
+  class="md:hidden inline-flex items-center justify-center rounded-full border border-outline-variant/30 bg-surface-container-high/50 backdrop-blur-md text-foreground size-12 transition-all hover:scale-105 active:scale-95"
   aria-label="Abrir menu"
   aria-expanded="false"
   aria-controls="mobile-menu-drawer"
 >
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <line x1="3" y1="18" x2="21" y2="18"></line>
-  </svg>
+  <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
 
 <!-- Mobile Menu Drawer -->
 <div 
   id="mobile-menu-drawer"
-  class="fixed inset-y-0 right-0 z-50 w-[300px] bg-surface-container border-l border-outline-variant/30 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl"
+  class="fixed inset-y-0 right-0 z-50 w-full max-w-[320px] bg-surface-container-lowest border-l border-white/5 transform translate-x-full transition-transform duration-500 ease-in-out shadow-[0_0_50px_rgba(0,0,0,0.5)]"
   role="dialog"
   aria-modal="true"
   aria-label="Menu de navegação"
 >
-  <div class="flex flex-col h-full p-6">
+  <div class="flex flex-col h-full">
     <!-- Header -->
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-foreground font-manrope text-headline-md">Menu</h2>
+    <div class="p-8 flex items-center justify-between border-b border-white/5">
+      <img src="/images/logo-longa.png" alt={brand.name} class="h-8 w-auto" />
       <button 
         id="mobile-menu-close"
-        class="inline-flex items-center justify-center rounded-full size-10 hover:bg-surface-container-high transition-colors"
+        class="inline-flex items-center justify-center rounded-full size-10 bg-white/5 hover:bg-white/10 text-on-surface-variant transition-colors"
         aria-label="Fechar menu"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+        <span class="material-symbols-outlined">close</span>
       </button>
     </div>
     
     <!-- Navigation -->
-    <nav class="flex flex-col gap-2 flex-1">
+    <nav class="flex flex-col p-6 gap-2">
       {links.map((link) => (
         <a
           href={link.href}
-          class="px-4 py-3 rounded-lg text-foreground hover:bg-surface-container-high hover:text-primary transition-colors duration-200 font-medium mobile-menu-link"
+          class="px-6 py-4 rounded-2xl text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all duration-300 font-manrope text-lg font-medium mobile-menu-link flex items-center justify-between group"
         >
           {link.label}
+          <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">chevron_right</span>
         </a>
       ))}
     </nav>
+
+    <!-- Socials & Contact -->
+    <div class="mt-auto p-8 border-t border-white/5 bg-surface-container-low/50">
+      <p class="text-label-sm text-primary font-bold uppercase tracking-[0.2em] mb-6">Contatos & Redes</p>
+      <div class="flex flex-col gap-4">
+        <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-2xl bg-primary text-on-primary font-bold transition-transform active:scale-95">
+          <span class="material-symbols-outlined">chat</span>
+          WhatsApp
+        </a>
+        <a href={footer.social.instagram} target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 text-on-surface hover:bg-white/10 transition-transform active:scale-95 border border-white/5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          Instagram
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
