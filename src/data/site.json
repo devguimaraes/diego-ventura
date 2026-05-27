@@ -1,8 +1,13 @@
 {
   "brand": {
     "name": "Dr. Dhiego Ventura",
-    "tagline": "Nutrição & Longevidade",
+    "tagline": "Nutricionista Rio de Janeiro",
     "crn": "23100286"
+  },
+  "seo": {
+    "title": "Nutricionista Rio de Janeiro e Zona Norte | Dr. Dhiego Ventura",
+    "description": "Nutricionista no Rio de Janeiro. Dr. Dhiego Ventura oferece plano VIP de 3 meses com consultas presenciais e acompanhamento quinzenal para emagrecimento, performance e saúde. Agende em Pilares.",
+    "keywords": "nutricionista, nutricionista rio de janeiro, nutricionista zona norte, emagrecimento, nutrição esportiva, suplementação, Dhiego Ventura, Pilares"
   },
   "contact": {
     "whatsapp": "5521967239874",
@@ -15,7 +20,7 @@
       "state": "RJ"
     },
     "hours": "Seg - Sex: 08:00 - 19:00",
-    "googleMapsUrl": "https://www.google.com/maps/place/Nutricionista+Dhiego+Ventura/@-22.8815552,-43.2931355,15z/"
+    "googleMapsUrl": "https://maps.app.goo.gl/gMYXL4VeuEv66MYW8"
   },
   "nav": {
     "links": [
@@ -26,37 +31,37 @@
     ]
   },
   "hero": {
-    "badge": "Oportunidade Exclusiva",
+    "badge": "Nutricionista no Rio de Janeiro",
     "headline": "3 meses de atendimento VIP para transformar seu corpo e sua saúde",
     "headlineLine1": "3 meses de atendimento VIP",
     "headlineLine2": "Para transformar seu corpo e sua saúde",
-    "description": "Na Clínica Ventura, com atendimento do nutricionista Dhiego Ventura, você inicia 3 meses de acompanhamento VIP — mais próximo, exclusivo e personalizado para transformar seu corpo com constância e direcionamento.",
-    "description2": "Ao longo desse período, você terá três consultas presenciais e videochamadas quinzenais via WhatsApp, em um plano pensado para quem quer resultados com mais cuidado, atenção e estratégia.",
-    "cta": "Garantir minha vaga!",
+    "description": "Chega de tentar sozinho. No plano VIP, você tem um nutricionista acompanhando cada passo: consultas presenciais, ajustes a cada 15 dias e uma estratégia montada para o seu corpo — sem dietas malucas, sem promessas vazias.",
+    "description2": "Três consultas presenciais e videochamadas quinzenais pelo WhatsApp. Um plano pensado para quem quer resultado de verdade, com um nutricionista que te conhece pelo nome — não pelo número da ficha.",
+    "cta": "Quero transformar meu corpo",
     "promoLabel": "Promoção válida em Junho e Julho",
     "price": "R$ 387,00",
-    "priceLabel": "Plano Completo",
+    "priceLabel": "Plano Completo (3 meses)",
     "priceNote": "vs Consulta avulsa R$ 198,00"
   },
   "servicos": {
-    "title": "Serviços Oferecidos",
+    "title": "Como posso te ajudar",
     "items": [
       {
         "icon": "fitness_center",
         "title": "Nutrição Esportiva",
-        "description": "Focada em performance, hipertrofia e definição corporal para atletas de todos os níveis.",
+        "description": "Melhore sua performance, ganhe massa muscular e defina seu corpo com um plano alimentar feito sob medida para seu treino.",
         "link": "#"
       },
       {
         "icon": "medication",
-        "title": "Suplementação",
-        "description": "Prescrição magistral de fórmulas personalizadas para saciedade e queima de gordura.",
+        "title": "Suplementação Inteligente",
+        "description": "Fórmulas personalizadas que aceleram seu metabolismo, controlam a fome e potencializam a queima de gordura.",
         "link": "#"
       },
       {
         "icon": "spa",
-        "title": "Emagrecimento",
-        "description": "Protocolos exclusivos para perda de peso sustentável sem restrições extremas.",
+        "title": "Emagrecimento Sustentável",
+        "description": "Perca peso comendo bem. Protocolos que respeitam seu corpo e cabem na sua rotina — sem passar fome.",
         "link": "#"
       }
     ],
@@ -68,16 +73,16 @@
   "sobre": {
     "name": "Dhiego Ventura",
     "title": "Nutricionista e Terapeuta",
-    "paragraph1": "Dhiego Ventura é Nutricionista e Terapeuta, com atuação voltada para a transformação da saúde por meio da alimentação, da mudança de hábitos e do cuidado individualizado.",
-    "paragraph2": "Na Clínica Ventura, seu trabalho une nutrição clínica, emagrecimento e performance, sempre com uma abordagem humanizada, próxima e estratégica."
+    "paragraph1": "Dhiego Ventura atua como nutricionista transformando a saúde de seus pacientes por meio da alimentação, da mudança de hábitos e do cuidado individualizado. Sem receita pronta — cada plano é único, porque cada corpo é único.",
+    "paragraph2": "Na Clínica Ventura, em Pilares, Zona Norte do Rio, ele une nutrição clínica, emagrecimento e performance com uma abordagem próxima, direta e sem rodeios."
   },
   "vantagens": {
-    "title": "Vantagens do Atendimento",
+    "title": "Por que escolher a Clínica Ventura",
     "items": [
-      { "icon": "restaurant", "title": "Nutrição com Especialização", "description": "Foco em doenças metabólicas e equilíbrio hormonal." },
-      { "icon": "psychology", "title": "Terapia Alimentar", "description": "Mude sua relação emocional com a comida." },
-      { "icon": "support_agent", "title": "Apoio Contínuo", "description": "Acompanhamento próximo durante toda jornada." },
-      { "icon": "self_improvement", "title": "Mudança de Mentalidade", "description": "Resultados duradouros através do mindset." }
+      { "icon": "restaurant", "title": "Nutrição com Especialização", "description": "Foco em metabolismo, equilíbrio hormonal e resultados que aparecem no espelho e nos exames." },
+      { "icon": "psychology", "title": "Terapia Alimentar", "description": "Mude sua relação com a comida. Chega de culpa, chega de efeito sanfona." },
+      { "icon": "support_agent", "title": "Apoio Contínuo", "description": "Acompanhamento próximo do início ao fim. Você não fica largado esperando a próxima consulta." },
+      { "icon": "self_improvement", "title": "Mudança de Mentalidade", "description": "Resultados que duram porque a cabeça muda junto com o corpo." }
     ]
   },
   "especialidades": {
@@ -116,8 +121,8 @@
     ]
   },
   "contato": {
-    "title": "Pronto para sua melhor versão?",
-    "description": "Conheça a clínica do Dr. Dhiego Ventura no Rio de Janeiro e agende sua consulta hoje mesmo para aproveitar o plano promocional.",
+    "title": "Pronto para começar?",
+    "description": "Agende sua consulta na Clínica Ventura e comece seu plano de 3 meses com o nutricionista Dhiego Ventura.",
     "form": {
       "title": "Agende sua Consulta",
       "submitLabel": "SOLICITAR AGENDAMENTO",
@@ -125,25 +130,28 @@
     }
   },
   "clinica": {
-    "title": "A Clínica",
+    "title": "Onde fica a clínica",
     "localizacao": {
-      "title": "Nossa Localização",
-      "description": "Estamos localizados em um ponto estratégico do Rio de Janeiro, no condomínio DHC Offices. Um espaço moderno e seguro para o seu conforto.",
+      "title": "Localização",
+      "description": "Estamos no DHC Offices, em Pilares, Zona Norte do Rio de Janeiro. Fácil acesso, estacionamento no local, ambiente seguro e climatizado.",
       "addressLabel": "Endereço:",
       "mapsLabel": "Ver no Google Maps"
     },
     "consultorio": {
       "title": "O Consultório",
-      "description": "Nosso consultório é equipado com tecnologias de ponta para bioimpedância e avaliação antropométrica, garantindo precisão em cada etapa do seu tratamento."
+      "description": "Equipado com bioimpedância de última geração e avaliação antropométrica completa. Tudo para que cada número da sua evolução seja preciso e confiável."
     }
   },
   "footer": {
-    "description": "Transformando vidas através da nutrição de excelência e cuidado humanizado.",
+    "description": "Nutrição de excelência com cuidado de verdade. Resultados que aparecem no espelho e nos exames.",
+    "social": {
+      "instagram": "https://www.instagram.com/didiventtura/"
+    },
     "links": [
-      { "label": "Termos de Uso", "href": "#" },
-      { "label": "Política de Privacidade", "href": "#" },
-      { "label": "Agendar Consulta", "href": "#contato" },
-      { "label": "Especialidades", "href": "#especialidades" }
+      { "label": "Termos de Uso", "href": "/termos-uso" },
+      { "label": "Política de Privacidade", "href": "/politica-privacidade" },
+      { "label": "Agendar Consulta", "href": "/#contato" },
+      { "label": "Especialidades", "href": "/#especialidades" }
     ],
     "copyright": "© 2026 Dr. Dhiego Ventura - Nutricionista & Terapeuta. Todos os direitos reservados."
   }
