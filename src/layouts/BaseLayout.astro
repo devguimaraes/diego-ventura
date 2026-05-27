@@ -1,12 +1,17 @@
 ---
 import '../styles/global.css';
+import { contact, seo, brand } from '../data/site.json';
+import CookieConsent from '../components/CookieConsent.astro';
 
 export interface Props {
   title: string;
   description: string;
+  canonicalURL?: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const SITE_URL = 'https://dr-dhiego-ventura.vercel.app';
+const { title, description, canonicalURL = SITE_URL, ogImage = `${SITE_URL}/images/logo-curta.png` } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,12 +21,40 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={seo.keywords} />
+    <meta name="author" content={brand.name} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="BR-RJ" />
+    <meta name="geo.placename" content="Rio de Janeiro" />
+    <meta name="geo.position" content="-22.8815552;-43.2931355" />
+    <meta name="ICBM" content="-22.8815552, -43.2931355" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo-curta.png" />
+    <link rel="apple-touch-icon" href="/images/logo-curta.png" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content={`${brand.name} - Nutricionista`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Material Symbols -->
     <link
@@ -32,40 +65,87 @@ const { title, description } = Astro.props;
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={`{
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "DietNutrition",
+      "@id": "${SITE_URL}/#organization",
       "name": "Dr. Dhiego Ventura - Nutricionista",
+      "alternateName": "Clínica Ventura",
       "description": "${description}",
+      "url": "${SITE_URL}",
+      "image": "${ogImage}",
+      "telephone": "+{contact.whatsapp}",
+      "email": "{contact.email}",
+      "priceRange": "R$",
+      "currenciesAccepted": "BRL",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "19:00"
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Dom Hélder Câmara, 6644",
         "addressLocality": "Rio de Janeiro",
-        "addressRegion": "RJ"
+        "addressRegion": "RJ",
+        "postalCode": "20771-004",
+        "addressCountry": "BR"
       },
-      "telephone": "+5521967239874",
-      "openingHours": "Mo-Fr 08:00-19:00"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.8815552,
+        "longitude": -43.2931355
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Rio de Janeiro",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Rio de Janeiro"
+        }
+      },
+      "hasMap": "https://www.google.com/maps/place/Nutricionista+Dhiego+Ventura/@-22.8815552,-43.2931355,15z/"
     }`} />
   </head>
   <body class="bg-background text-foreground antialiased relative">
-    <div class="relative z-10 bg-background shadow-[0_50px_100px_rgba(0,0,0,0.5)] mb-[var(--footer-height,0)]">
+    <!-- O conteúdo principal cobre o footer com um z-index positivo -->
+    <div id="main-content" class="relative z-10 bg-background shadow-[0_50px_100px_rgba(0,0,0,0.5)] min-h-screen w-full">
       <slot />
     </div>
+    
+    <!-- O footer fica fixo atrás de tudo usando um z-index menor que o conteúdo -->
+    <div id="footer-reveal" class="fixed bottom-0 left-0 w-full z-0 invisible lg:visible">
+      <slot name="footer" />
+    </div>
+
+    <CookieConsent />
     
     <script>
       function updateFooterHeight() {
         const footer = document.getElementById('main-footer');
-        if (footer) {
-          const height = footer.offsetHeight;
-          document.body.style.setProperty('--footer-height', `${height}px`);
-          footer.style.position = 'fixed';
-          footer.style.bottom = '0';
-          footer.style.left = '0';
-          footer.style.width = '100%';
+        const mainContent = document.getElementById('main-content');
+        const footerReveal = document.getElementById('footer-reveal');
+        
+        if (footer && mainContent && footerReveal) {
+          if (window.innerWidth > 1024) {
+            const height = footer.offsetHeight;
+            mainContent.style.marginBottom = `${height}px`;
+            footerReveal.style.zIndex = '0';
+            footerReveal.style.position = 'fixed';
+            footerReveal.style.visibility = 'visible';
+          } else {
+            mainContent.style.marginBottom = '0px';
+            footerReveal.style.zIndex = 'auto';
+            footerReveal.style.position = 'relative';
+            footerReveal.style.visibility = 'visible';
+          }
         }
       }
 
       window.addEventListener('resize', updateFooterHeight);
       window.addEventListener('load', updateFooterHeight);
       document.addEventListener('astro:after-swap', updateFooterHeight);
+      
+      updateFooterHeight();
     </script>
   </body>
 </html>
