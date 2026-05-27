@@ -1,18 +1,26 @@
 ---
-import { footer, contact, brand } from '../data/site.json';
+import { footer, contact } from '../data/site.json';
 ---
 
 <footer id="main-footer" class="bg-surface-container-lowest border-t border-white/5 w-full py-24 relative z-0">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 container-main">
     <div class="lg:col-span-2">
-      <img src="/images/logo-longa.png" alt={`Logo ${brand.name}`} class="h-12 md:h-16 mb-10 transition-transform hover:scale-105 duration-500" width="240" height="56" />
+      <img src="/images/logo-longa.png" alt="Dr. Dhiego Ventura - Nutricionista Rio de Janeiro" class="h-12 md:h-16 mb-10 transition-transform hover:scale-105 duration-500" width="240" height="56" />
       <p class="text-on-surface-variant/70 text-body-lg mb-10 max-w-sm leading-relaxed">{footer.description}</p>
       <div class="flex gap-4">
-        {['phone', 'mail', 'language'].map((icon) => (
-          <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-primary hover:bg-primary hover:text-on-primary transition-all duration-500 group">
-            <span class="material-symbols-outlined text-2xl group-hover:rotate-12">{icon}</span>
-          </a>
-        ))}
+        <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-primary hover:bg-primary hover:text-on-primary transition-all duration-500 group">
+          <span class="material-symbols-outlined text-2xl group-hover:rotate-12">chat</span>
+        </a>
+        <a href={footer.social.instagram} target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-primary hover:bg-primary hover:text-on-primary transition-all duration-500 group" aria-label="Siga no Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href={`mailto:${contact.email}`} class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-primary hover:bg-primary hover:text-on-primary transition-all duration-500 group">
+          <span class="material-symbols-outlined text-2xl group-hover:rotate-12">mail</span>
+        </a>
       </div>
     </div>
     
@@ -45,8 +53,14 @@ import { footer, contact, brand } from '../data/site.json';
   <div class="mt-24 pt-12 border-t border-white/5 container-main flex flex-col md:flex-row justify-between items-center gap-6">
     <p class="text-on-surface-variant/40 text-label-sm uppercase tracking-widest">{footer.copyright}</p>
     <div class="flex gap-8">
-      <a href="#" class="text-on-surface-variant/40 hover:text-primary text-label-sm uppercase tracking-widest transition-colors">Instagram</a>
-      <a href="#" class="text-on-surface-variant/40 hover:text-primary text-label-sm uppercase tracking-widest transition-colors">Facebook</a>
+      <a href={footer.social.instagram} target="_blank" rel="noopener noreferrer" class="text-on-surface-variant/40 hover:text-primary text-label-sm uppercase tracking-widest transition-colors flex items-center gap-2 group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        Instagram
+      </a>
     </div>
   </div>
 </footer>

@@ -5,7 +5,7 @@ import { brand, nav, contact } from '../data/site.json';
 ---
 
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent py-6">
-  <div class="container-main flex justify-between items-center w-full">
+  <div class="container-main flex justify-between items-center">
     <!-- Logo -->
     <a href="/">
       <img
@@ -35,9 +35,11 @@ import { brand, nav, contact } from '../data/site.json';
 
     <!-- Right side -->
     <div class="flex items-center gap-6">
-      <Button href={`https://wa.me/${contact.whatsapp}`} class="hidden sm:inline-flex btn-magnetic">
-        Agendar Avaliação
-      </Button>
+      <div class="hidden lg:block">
+        <Button href={`https://wa.me/${contact.whatsapp}`} class="btn-magnetic px-10 h-14 flex items-center justify-center text-sm">
+          Agendar Avaliação
+        </Button>
+      </div>
     </div>
   </div>
 </header>

@@ -1,0 +1,52 @@
+---
+---
+<div id="cookie-consent" class="fixed bottom-6 left-6 right-6 md:left-auto md:max-w-md z-[100] translate-y-[150%] transition-transform duration-700 ease-out pointer-events-none">
+  <div class="bg-surface-container-highest/90 border border-white/10 p-5 rounded-2xl shadow-2xl pointer-events-auto backdrop-blur-md">
+    <div class="flex flex-col gap-4">
+      <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-primary shrink-0">cookie</span>
+        <div class="space-y-1">
+          <h4 class="text-on-surface font-bold text-sm">Privacidade e Cookies</h4>
+          <p class="text-on-surface-variant/80 text-xs leading-relaxed">
+            Usamos cookies para melhorar sua experiência. Veja nossa <a href="/politica-privacidade" class="text-primary hover:underline font-bold">Política de Privacidade</a>.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button id="necessary-cookies" class="flex-1 px-4 py-2 text-xs font-bold text-on-surface-variant hover:text-on-surface transition-colors border border-white/5 rounded-lg hover:bg-white/5">
+          Essenciais
+        </button>
+        <button id="accept-cookies" class="flex-1 px-4 py-2 text-xs font-bold bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/10">
+          Aceitar Todos
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCookieConsent() {
+    const consent = localStorage.getItem('cookie-consent');
+    const banner = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const necessaryBtn = document.getElementById('necessary-cookies');
+
+    if (!consent && banner) {
+      setTimeout(() => {
+        banner.classList.remove('translate-y-[150%]');
+      }, 1500);
+
+      const handleConsent = (type: string) => {
+        localStorage.setItem('cookie-consent', type);
+        banner.classList.add('translate-y-[150%]');
+      };
+
+      acceptBtn?.addEventListener('click', () => handleConsent('all'));
+      necessaryBtn?.addEventListener('click', () => handleConsent('necessary'));
+    }
+  }
+
+  // Executa no carregamento inicial e após navegações (Astro View Transitions)
+  initCookieConsent();
+  document.addEventListener('astro:after-swap', initCookieConsent);
+</script>

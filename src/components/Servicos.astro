@@ -76,25 +76,59 @@ import { servicos } from '../data/site.json';
   const labels = document.getElementById('video-labels');
   let playing = false;
 
-  btn?.addEventListener('click', () => {
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleVideo();
+  });
+
+  const videoContainer = btn?.closest('.group');
+  videoContainer?.addEventListener('click', () => {
+    toggleVideo();
+  });
+
+  function toggleVideo() {
+    if (!video) return;
+
     if (!playing) {
-      if (video) video.style.opacity = '1';
+      video.style.opacity = '1';
       if (overlay) overlay.style.opacity = '0';
       if (labels) labels.style.opacity = '0';
-      video?.play();
+      if (btn) btn.style.opacity = '0';
+      video.play();
       if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">pause</span>';
       playing = true;
     } else {
-      video?.pause();
+      video.pause();
+      if (overlay) overlay.style.opacity = '1';
+      if (labels) labels.style.opacity = '1';
+      if (btn) btn.style.opacity = '1';
       if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">play_arrow</span>';
       playing = false;
+    }
+  }
+
+  // Mostrar controles ao passar o mouse se estiver rodando
+  videoContainer?.addEventListener('mouseenter', () => {
+    if (playing) {
+      if (btn) btn.style.opacity = '1';
+      if (labels) labels.style.opacity = '1';
+    }
+  });
+
+  videoContainer?.addEventListener('mouseleave', () => {
+    if (playing) {
+      if (btn) btn.style.opacity = '0';
+      if (labels) labels.style.opacity = '0';
     }
   });
 
   video?.addEventListener('ended', () => {
     if (overlay) overlay.style.opacity = '1';
     if (labels) labels.style.opacity = '1';
-    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">replay</span>';
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">replay</span>';
+    }
     playing = false;
   });
 
