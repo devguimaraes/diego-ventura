@@ -14,5 +14,5 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  site: 'https://dr-dhiego-ventura.vercel.app',
+  site: 'https://diego-ventura.vercel.app',
 });
