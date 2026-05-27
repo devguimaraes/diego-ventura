@@ -2,14 +2,29 @@
 import { vantagens } from '../data/site.json';
 ---
 
-<section class="py-section-gap container-main">
-  <h2 class="text-headline-lg text-foreground text-center mb-16">{vantagens.title}</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {vantagens.items.map((item) => (
-      <div class="flex flex-col items-center group cursor-default">
-        <span class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(230,195,100,0.4)] transition-all duration-300">{item.icon}</span>
-        <h3 class="font-manrope text-headline-md text-foreground mb-2 text-center">{item.title}</h3>
-        <p class="font-manrope text-body-md text-on-surface-variant/80 text-center">{item.description}</p>
+<section id="vantagens" class="py-section-gap container-main">
+  <div class="text-center mb-20" data-animate="reveal">
+    <h2 class="font-manrope text-display-lg text-foreground mb-4 leading-tight">
+      <span class="split-text-line">
+        <span class="split-text-content">{vantagens.title}</span>
+      </span>
+    </h2>
+    <div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+    {vantagens.items.map((item, index) => (
+      <div 
+        class="flex flex-col items-center group cursor-default p-8 rounded-3xl transition-all duration-500 hover:bg-white/5"
+        data-animate="reveal"
+        data-animate-delay={index + 1}
+      >
+        <div class="relative mb-8">
+          <div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-0 group-hover:scale-125 transition-transform duration-700"></div>
+          <span class="material-symbols-outlined text-5xl text-primary relative z-10 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(230,195,100,0.6)]">{item.icon}</span>
+        </div>
+        <h3 class="font-manrope text-headline-md text-foreground mb-4 text-center group-hover:text-primary transition-colors duration-500">{item.title}</h3>
+        <p class="font-manrope text-body-lg text-on-surface-variant/80 text-center leading-relaxed">{item.description}</p>
       </div>
     ))}
   </div>

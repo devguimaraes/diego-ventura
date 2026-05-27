@@ -45,7 +45,27 @@ const { title, description } = Astro.props;
       "openingHours": "Mo-Fr 08:00-19:00"
     }`} />
   </head>
-  <body class="bg-background text-foreground antialiased">
-    <slot />
+  <body class="bg-background text-foreground antialiased relative">
+    <div class="relative z-10 bg-background shadow-[0_50px_100px_rgba(0,0,0,0.5)] mb-[var(--footer-height,0)]">
+      <slot />
+    </div>
+    
+    <script>
+      function updateFooterHeight() {
+        const footer = document.getElementById('main-footer');
+        if (footer) {
+          const height = footer.offsetHeight;
+          document.body.style.setProperty('--footer-height', `${height}px`);
+          footer.style.position = 'fixed';
+          footer.style.bottom = '0';
+          footer.style.left = '0';
+          footer.style.width = '100%';
+        }
+      }
+
+      window.addEventListener('resize', updateFooterHeight);
+      window.addEventListener('load', updateFooterHeight);
+      document.addEventListener('astro:after-swap', updateFooterHeight);
+    </script>
   </body>
 </html>

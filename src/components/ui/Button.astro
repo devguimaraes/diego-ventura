@@ -22,3 +22,35 @@ const classes = cn(buttonVariants({ variant, size }), extraClass);
     <slot />
   </button>
 )}
+
+<script>
+  function initMagneticButtons() {
+    const magneticButtons = document.querySelectorAll('.btn-magnetic');
+    
+    magneticButtons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = btn.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left - rect.width / 2;
+        const y = mouseEvent.clientY - rect.top - rect.height / 2;
+        
+        // @ts-ignore
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        // @ts-ignore
+        btn.style.transition = 'transform 0.1s ease-out';
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        // @ts-ignore
+        btn.style.transform = '';
+        // @ts-ignore
+        btn.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+      });
+    });
+  }
+
+  // Initialize on page load
+  initMagneticButtons();
+  // Re-initialize after Astro swaps (if using View Transitions)
+  document.addEventListener('astro:after-swap', initMagneticButtons);
+</script>

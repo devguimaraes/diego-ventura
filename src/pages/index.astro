@@ -39,67 +39,28 @@ import WhatsAppFAB from '../components/WhatsAppFAB.astro';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!prefersReducedMotion) {
-    // Scroll animations with refined easing and stagger support
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.15 });
+    }, observerOptions);
 
-    // Auto-assign data-animate to sections and their children
-    document.querySelectorAll('section').forEach((section) => {
-      section.classList.add('transition-[opacity,transform]');
-      if (!section.hasAttribute('data-animate')) {
-        section.setAttribute('data-animate', 'section');
+    // Select all elements with data-animate and observe
+    document.querySelectorAll('[data-animate]').forEach((el) => {
+      // @ts-ignore
+      const delay = el.getAttribute('data-animate-delay') || '0';
+      if (delay !== '0') {
+        // @ts-ignore
+        el.style.transitionDelay = `${Number(delay) * 100}ms`;
       }
-      observer.observe(section);
-
-      // Titles
-      section.querySelectorAll('h1, h2').forEach(el => {
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', 'title');
-          observer.observe(el);
-        }
-      });
-
-      // Paragraphs
-      section.querySelectorAll('p').forEach(el => {
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', 'text');
-          observer.observe(el);
-        }
-      });
-
-      // Cards in grid — detect by common card classes
-      section.querySelectorAll('[class*="glass-card"], [class*="bg-surface-container"]').forEach((el, cIndex) => {
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', 'card');
-          el.setAttribute('data-animate-delay', String((cIndex % 8) + 1));
-          observer.observe(el);
-        }
-      });
-
-      // Buttons/CTAs
-      section.querySelectorAll('button, a[data-slot="button"]').forEach(el => {
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', 'button');
-          observer.observe(el);
-        }
-      });
-
-      // Images (skip hero image for LCP)
-      section.querySelectorAll('img').forEach(el => {
-        // Skip hero image
-        if (el.closest('#hero') || el.classList.contains('hero-image')) {
-          return;
-        }
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', 'image');
-          observer.observe(el);
-        }
-      });
+      observer.observe(el);
     });
   }
 </script>

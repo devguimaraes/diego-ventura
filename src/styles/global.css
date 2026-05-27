@@ -5,6 +5,40 @@
 @import '@fontsource/manrope/800.css';
 @import "tw-animate-css";
 
+@layer base {
+  :root {
+    --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer utilities {
+  .animate-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+  }
+
+  .animate-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .split-text-line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .split-text-content {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.8s var(--ease-premium);
+  }
+
+  .is-visible .split-text-content {
+    transform: translateY(0);
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

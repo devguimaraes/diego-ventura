@@ -2,42 +2,51 @@
 import { footer, contact, brand } from '../data/site.json';
 ---
 
-<footer class="bg-surface-container-lowest border-t border-outline-variant/20 w-full py-16">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 container-main">
-    <div>
-      <img src="/images/logo-longa.png" alt={`Logo ${brand.name}`} class="h-14 mb-8" width="240" height="56" />
-      <p class="text-on-surface-variant/70 text-body-md mb-8 max-w-xs">{footer.description}</p>
-      <div class="flex gap-6">
-        <span class="material-symbols-outlined text-primary cursor-pointer hover:scale-125 transition-transform bg-primary/10 p-3 rounded-full">phone</span>
-        <span class="material-symbols-outlined text-primary cursor-pointer hover:scale-125 transition-transform bg-primary/10 p-3 rounded-full">mail</span>
-        <span class="material-symbols-outlined text-secondary cursor-pointer hover:scale-125 transition-transform bg-secondary/10 p-3 rounded-full">location_on</span>
+<footer id="main-footer" class="bg-surface-container-lowest border-t border-white/5 w-full py-24 relative z-0">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 container-main">
+    <div class="lg:col-span-2">
+      <img src="/images/logo-longa.png" alt={`Logo ${brand.name}`} class="h-12 md:h-16 mb-10 transition-transform hover:scale-105 duration-500" width="240" height="56" />
+      <p class="text-on-surface-variant/70 text-body-lg mb-10 max-w-sm leading-relaxed">{footer.description}</p>
+      <div class="flex gap-4">
+        {['phone', 'mail', 'language'].map((icon) => (
+          <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-primary hover:bg-primary hover:text-on-primary transition-all duration-500 group">
+            <span class="material-symbols-outlined text-2xl group-hover:rotate-12">{icon}</span>
+          </a>
+        ))}
       </div>
     </div>
-    <div class="flex flex-col gap-4">
-      <h4 class="text-headline-md text-foreground mb-6">Links Úteis</h4>
+    
+    <div class="flex flex-col gap-6">
+      <h4 class="text-label-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Navegação</h4>
       {footer.links.map((link) => (
-        <a href={link.href} class="text-on-surface-variant/70 hover:text-primary transition-colors text-label-md">{link.label}</a>
+        <a href={link.href} class="text-on-surface-variant/70 hover:text-primary transition-all duration-300 text-body-md hover:translate-x-2">{link.label}</a>
       ))}
     </div>
-    <div>
-      <h4 class="text-headline-md text-foreground mb-6">Contato</h4>
-      <div class="space-y-4">
-        <div class="flex items-start gap-3">
-          <span class="material-symbols-outlined text-secondary text-xl mt-1">location_on</span>
-          <p class="text-on-surface-variant/70 text-body-md">{contact.address.street}<br/>{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
+
+    <div class="flex flex-col gap-6">
+      <h4 class="text-label-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Onde Estamos</h4>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4 group">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform">location_on</span>
+          <p class="text-on-surface-variant/70 text-body-md leading-relaxed">{contact.address.street}<br/>{contact.address.neighborhood}, {contact.address.city} - {contact.address.state}</p>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-secondary text-xl">call</span>
-          <p class="text-on-surface-variant/70 text-body-md">{contact.phone}</p>
+        <div class="flex items-center gap-4 group">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform">call</span>
+          <p class="text-on-surface-variant/70 text-body-md font-bold">{contact.phone}</p>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-secondary text-xl">schedule</span>
+        <div class="flex items-center gap-4 group">
+          <span class="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform">schedule</span>
           <p class="text-on-surface-variant/70 text-body-md">{contact.hours}</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="mt-16 pt-8 border-t border-outline-variant/10 text-center container-main">
-    <p class="text-on-surface-variant/50 text-label-md">{footer.copyright}</p>
+  
+  <div class="mt-24 pt-12 border-t border-white/5 container-main flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="text-on-surface-variant/40 text-label-sm uppercase tracking-widest">{footer.copyright}</p>
+    <div class="flex gap-8">
+      <a href="#" class="text-on-surface-variant/40 hover:text-primary text-label-sm uppercase tracking-widest transition-colors">Instagram</a>
+      <a href="#" class="text-on-surface-variant/40 hover:text-primary text-label-sm uppercase tracking-widest transition-colors">Facebook</a>
+    </div>
   </div>
 </footer>

@@ -2,54 +2,66 @@
 import { servicos } from '../data/site.json';
 ---
 
-<section class="py-section-gap container-main">
-  <div class="text-center mb-16">
-    <h2 class="font-manrope text-headline-lg text-foreground mb-4">{servicos.title}</h2>
-    <div class="h-1 w-20 bg-primary mx-auto"></div>
+<section id="servicos" class="py-section-gap container-main overflow-hidden">
+  <div class="text-center mb-20" data-animate="reveal">
+    <h2 class="font-manrope text-display-lg text-foreground mb-4 leading-tight">
+      <span class="split-text-line">
+        <span class="split-text-content">{servicos.title}</span>
+      </span>
+    </h2>
+    <div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
     <!-- Left: Stacked service cards (7 cols) -->
-    <div class="lg:col-span-7 space-y-6">
-      {servicos.items.map((item) => (
-        <div class="glass-card p-8 rounded-lg group hover:border-primary transition-all duration-500 flex gap-6 items-start">
-          <span class="material-symbols-outlined text-secondary text-4xl mt-1">{item.icon}</span>
-          <div>
-            <h3 class="font-manrope text-headline-md text-primary mb-2">{item.title}</h3>
-            <p class="text-on-surface-variant/80 font-manrope text-body-md mb-4">{item.description}</p>
-            <a class="text-primary font-manrope text-label-md flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
-              Saiba Mais <span class="material-symbols-outlined">chevron_right</span>
+    <div class="lg:col-span-7 space-y-8">
+      {servicos.items.map((item, index) => (
+        <div 
+          class="glass-card p-10 rounded-[2rem] group hover:border-primary/50 transition-all duration-700 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden card-glow"
+          data-animate="reveal"
+          data-animate-delay={index + 1}
+        >
+          <div class="relative z-10 p-4 bg-primary/5 rounded-2xl group-hover:bg-primary/10 transition-colors duration-500">
+            <span class="material-symbols-outlined text-primary text-5xl leading-none">{item.icon}</span>
+          </div>
+          <div class="relative z-10">
+            <h3 class="font-manrope text-headline-md text-foreground group-hover:text-primary transition-colors duration-500 mb-3">{item.title}</h3>
+            <p class="text-on-surface-variant/80 font-manrope text-body-lg mb-6 leading-relaxed">{item.description}</p>
+            <a class="text-primary font-bold text-label-md flex items-center gap-2 group-hover:gap-4 transition-all duration-500" href="#contato">
+              Saber mais sobre {item.title} <span class="material-symbols-outlined text-lg">arrow_forward</span>
             </a>
           </div>
+          <!-- Glow effect overlay -->
+          <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 glow-layer" style="background: radial-gradient(600px circle at var(--x) var(--y), rgba(230, 195, 100, 0.1), transparent 40%);"></div>
         </div>
       ))}
     </div>
 
     <!-- Right: Video (5 cols) -->
-    <div class="lg:col-span-5 h-full min-h-[500px]">
-      <div class="relative w-full h-full rounded-lg overflow-hidden glass-card border-none flex items-center justify-center group cursor-pointer">
+    <div class="lg:col-span-5 h-full" data-animate="reveal" data-animate-delay="4">
+      <div class="relative w-full aspect-[4/5] lg:h-full rounded-[2.5rem] overflow-hidden glass-card border-white/10 flex items-center justify-center group cursor-pointer shadow-luxury">
         <video
           id="institutional-video"
           src="/videos/video-institucional.mp4"
           preload="metadata"
           playsinline
           poster="/images/consultorio-1.jpg"
-          class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+          class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-[2s]"
         ></video>
 
-        <div id="video-overlay" class="absolute inset-0 bg-surface-container-high/60 transition-opacity duration-500"></div>
+        <div id="video-overlay" class="absolute inset-0 bg-background/40 transition-opacity duration-700"></div>
 
-        <div id="video-labels" class="absolute bottom-6 left-6 z-20 transition-opacity duration-300">
-          <p class="text-primary font-bold text-lg mb-1">{servicos.video.title}</p>
-          <p class="text-foreground/80 text-sm">{servicos.video.subtitle}</p>
+        <div id="video-labels" class="absolute bottom-10 left-10 z-20 transition-all duration-700 group-hover:translate-y-[-10px]">
+          <p class="text-primary font-bold text-2xl mb-2">{servicos.video.title}</p>
+          <p class="text-foreground/80 text-lg">{servicos.video.subtitle}</p>
         </div>
 
         <button
           id="video-play-btn"
-          class="relative z-10 w-20 h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+          class="relative z-10 w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-500 btn-magnetic"
           aria-label="Reproduzir vídeo institucional"
         >
-          <span class="material-symbols-outlined text-4xl leading-none">play_arrow</span>
+          <span class="material-symbols-outlined text-5xl leading-none">play_arrow</span>
         </button>
       </div>
     </div>
@@ -57,31 +69,53 @@ import { servicos } from '../data/site.json';
 </section>
 
 <script>
-  const btn = document.getElementById('video-play-btn')!;
+  // Video logic
+  const btn = document.getElementById('video-play-btn');
   const video = document.getElementById('institutional-video') as HTMLVideoElement;
-  const overlay = document.getElementById('video-overlay')!;
-  const labels = document.getElementById('video-labels')!;
+  const overlay = document.getElementById('video-overlay');
+  const labels = document.getElementById('video-labels');
   let playing = false;
 
   btn?.addEventListener('click', () => {
     if (!playing) {
-      video.style.opacity = '1';
-      overlay.style.opacity = '0';
-      labels.style.opacity = '0';
-      video.play();
-      btn.innerHTML = '<span class="material-symbols-outlined text-4xl leading-none">pause</span>';
+      if (video) video.style.opacity = '1';
+      if (overlay) overlay.style.opacity = '0';
+      if (labels) labels.style.opacity = '0';
+      video?.play();
+      if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">pause</span>';
       playing = true;
     } else {
-      video.pause();
-      btn.innerHTML = '<span class="material-symbols-outlined text-4xl leading-none">play_arrow</span>';
+      video?.pause();
+      if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">play_arrow</span>';
       playing = false;
     }
   });
 
   video?.addEventListener('ended', () => {
-    overlay.style.opacity = '1';
-    labels.style.opacity = '1';
-    btn.innerHTML = '<span class="material-symbols-outlined text-4xl leading-none">replay</span>';
+    if (overlay) overlay.style.opacity = '1';
+    if (labels) labels.style.opacity = '1';
+    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">replay</span>';
     playing = false;
   });
+
+  // Card Glow effect logic
+  function initCardGlow() {
+    const cards = document.querySelectorAll('.card-glow');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = card.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+        
+        // @ts-ignore
+        card.style.setProperty('--x', `${x}px`);
+        // @ts-ignore
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+  }
+
+  initCardGlow();
+  document.addEventListener('astro:after-swap', initCardGlow);
 </script>

@@ -1,41 +1,51 @@
 ---
+import { Image } from 'astro:assets';
 import Button from './ui/Button.astro';
 import { hero, contact } from '../data/site.json';
+import heroImg from '../../public/images/hero-diego.jpg';
 ---
 
-<section id="hero" class="relative min-h-[85vh] flex items-center container-main pt-24 pb-16">
+<section id="hero" class="relative min-h-[90vh] flex items-center container-main pt-32 pb-20">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
     <!-- Text content -->
-    <div class="z-10 order-2 lg:order-1">
-      <span class="text-primary font-medium text-label-md tracking-widest uppercase block mb-4">
+    <div class="z-10 order-2 lg:order-1" data-animate="reveal">
+      <span class="text-primary font-bold text-label-sm tracking-[0.2em] uppercase block mb-6 animate-pulse">
         {hero.badge}
       </span>
-      <h1 class="text-display-lg text-foreground mb-4 leading-tight">
-        {hero.headlineLine1.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headlineLine1.split('VIP')[1]}<br />
-        <span class="text-headline-lg">{hero.headlineLine2}</span>
+      
+      <h1 class="text-display-lg text-foreground mb-8 leading-[1.1]">
+        <span class="split-text-line">
+          <span class="split-text-content">{hero.headlineLine1.split('VIP')[0]}<span class="text-primary">VIP</span>{hero.headlineLine1.split('VIP')[1]}</span>
+        </span>
+        <span class="split-text-line">
+          <span class="split-text-content text-headline-lg text-foreground/90 mt-2">{hero.headlineLine2}</span>
+        </span>
       </h1>
-      <p class="text-body-md text-on-surface-variant/80 mb-3 max-w-lg">
+
+      <p class="text-body-lg text-on-surface-variant/80 mb-4 max-w-xl leading-relaxed">
         {hero.description}
       </p>
-      <p class="text-body-md text-on-surface-variant/60 mb-6 max-w-lg">
+      <p class="text-body-md text-on-surface-variant/60 mb-10 max-w-lg">
         {hero.description2}
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-6 items-center mb-6">
-        <div class="relative">
-          <Button href={`https://wa.me/${contact.whatsapp}`} size="lg" class="px-10 py-5 text-label-md font-extrabold">
-            {hero.cta} <span class="material-symbols-outlined group-hover/button:translate-x-1 transition-transform">arrow_forward</span>
+      <div class="flex flex-col sm:flex-row gap-8 items-center">
+        <div class="relative group">
+          <Button href={`https://wa.me/${contact.whatsapp}`} size="lg" class="px-12 py-6 text-label-md font-extrabold btn-magnetic shadow-luxury hover:shadow-luxury-hover transition-all duration-500">
+            {hero.cta} 
+            <span class="material-symbols-outlined ml-2 transition-transform duration-500 group-hover:translate-x-2">arrow_forward</span>
           </Button>
           <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <span class="bg-surface-container-highest text-primary text-[10px] font-bold px-4 py-1.5 rounded-full border border-primary/30 uppercase tracking-tight z-10 relative">
+            <span class="bg-primary/10 text-primary text-[11px] font-bold px-5 py-2 rounded-full border border-primary/20 uppercase tracking-widest backdrop-blur-sm">
               {hero.promoLabel}
             </span>
           </div>
         </div>
-        <div class="flex flex-col gap-1 text-center sm:text-left pt-6 sm:pt-0">
+        
+        <div class="flex flex-col gap-1 text-center sm:text-left pt-8 sm:pt-0">
           <div class="flex items-center gap-3">
-            <span class="text-primary font-bold text-2xl">{hero.price}</span>
-            <span class="text-on-surface-variant/40 text-sm">{hero.priceLabel}</span>
+            <span class="text-primary font-bold text-3xl tracking-tight">{hero.price}</span>
+            <span class="text-on-surface-variant/40 text-sm font-medium">{hero.priceLabel}</span>
           </div>
           <div class="text-on-surface-variant/50 text-xs italic">
             {hero.priceNote}
@@ -44,17 +54,20 @@ import { hero, contact } from '../data/site.json';
       </div>
     </div>
 
-    <!-- Doctor photo -->
-    <div class="relative order-1 lg:order-2 flex justify-center overflow-hidden">
-      <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
-      <img
-        src="/images/hero-diego.jpg"
-        alt={hero.badge}
-        class="hero-image relative z-10 w-full max-w-md rounded-lg shadow-2xl transition-all duration-700"
-        width="600"
-        height="750"
-        loading="eager"
-      />
+    <!-- Image -->
+    <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end" data-animate="reveal" data-animate-delay="2">
+      <div class="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-75 animate-pulse"></div>
+      <div class="relative z-10 w-full max-w-lg aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/5 group">
+        <Image
+          src={heroImg}
+          alt={hero.badge}
+          class="hero-image object-cover w-full h-full transition-transform duration-[2s] group-hover:scale-110"
+          width={800}
+          height={1000}
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      </div>
     </div>
   </div>
 </section>
