@@ -2,5 +2,29 @@
   "framework": "astro",
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
-  "installCommand": "bun install"
+  "installCommand": "bun install",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "diego-ventura.vercel.app"
+        }
+      ],
+      "destination": "https://www.clinicaventura.com.br/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "clinicaventura.com.br"
+        }
+      ],
+      "destination": "https://www.clinicaventura.com.br/:path*",
+      "permanent": true
+    }
+  ]
 }
