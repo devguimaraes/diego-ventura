@@ -13,7 +13,7 @@ bunx astro check     # typecheck (deve retornar 0 erros)
 
 ## Arquitetura
 
-Landing page estática (Astro 6, output: `static`), tema dark premium para o nutricionista Dr. Dhiego Ventura. Domínio oficial: `https://www.clinicaventura.com.br` (redirecionamentos 301 configurados para `diego-ventura.vercel.app` e `clinicaventura.com.br`).
+Landing page estática (Astro 6, output: `static`), tema dark premium para o nutricionista Dr. Dhiego Ventura. Domínio oficial: `https://www.clinicaventura.com.br`. Redirecionamentos 301 para `diego-ventura.vercel.app` e `clinicaventura.com.br` são feitos pelo `middleware.ts` na Vercel Edge.
 
 **Fluxo de dados**: `src/data/site.json` (Single Source of Truth textual) → componentes `.astro` → `BaseLayout.astro` (shell HTML + SEO + Schema.org).
 

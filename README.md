@@ -261,7 +261,7 @@ site: 'https://www.clinicaventura.com.br'
 "siteUrl": "https://www.clinicaventura.com.br"
 ```
 
-Redirecionamentos 301 estão configurados em `vercel.json` para forçar o domínio canônico:
+Redirecionamentos 301 para o domínio canônico são feitos pelo `middleware.ts` na Vercel Edge:
 - `diego-ventura.vercel.app/*` → `https://www.clinicaventura.com.br/:splat`
 - `clinicaventura.com.br/*` → `https://www.clinicaventura.com.br/:splat`
 
