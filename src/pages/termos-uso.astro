@@ -2,14 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { brand } from '../data/site.json';
+import { brand, siteUrl } from '../data/site.json';
 
-const SITE_URL = 'https://diego-ventura.vercel.app';
 const title = `Termos de Uso | ${brand.name}`;
 const description = `Termos de Uso do site ${brand.name}. Leia nossas condições de uso.`;
 ---
 
-<BaseLayout title={title} description={description} canonicalURL={`${SITE_URL}/termos-uso`}>
+<BaseLayout title={title} description={description} canonicalURL={`${siteUrl}/termos-uso`}>
   <Header />
   
   <main class="pt-32 pb-24">

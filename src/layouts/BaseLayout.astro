@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { contact, seo, brand } from '../data/site.json';
+import { contact, seo, brand, siteUrl } from '../data/site.json';
 import CookieConsent from '../components/CookieConsent.astro';
 
 export interface Props {
@@ -10,8 +10,7 @@ export interface Props {
   ogImage?: string;
 }
 
-const SITE_URL = 'https://diego-ventura.vercel.app';
-const { title, description, canonicalURL = SITE_URL, ogImage = `${SITE_URL}/images/logo-curta.png` } = Astro.props;
+const { title, description, canonicalURL = `${siteUrl}${Astro.url.pathname}`, ogImage = `${siteUrl}/images/logo-curta.png` } = Astro.props;
 ---
 
 <!doctype html>
@@ -69,14 +68,14 @@ const { title, description, canonicalURL = SITE_URL, ogImage = `${SITE_URL}/imag
     <script type="application/ld+json" set:html={`{
       "@context": "https://schema.org",
       "@type": "DietNutrition",
-      "@id": "${SITE_URL}/#organization",
+      "@id": "${siteUrl}/#organization",
       "name": "Dr. Dhiego Ventura - Nutricionista",
       "alternateName": "Clínica Ventura",
       "description": "${description}",
-      "url": "${SITE_URL}",
+      "url": "${siteUrl}",
       "image": "${ogImage}",
-      "telephone": "+{contact.whatsapp}",
-      "email": "{contact.email}",
+      "telephone": "+${contact.whatsapp}",
+      "email": "${contact.email}",
       "priceRange": "R$",
       "currenciesAccepted": "BRL",
       "openingHoursSpecification": {

@@ -14,5 +14,5 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  site: 'https://diego-ventura.vercel.app',
+  site: 'https://www.clinicaventura.com.br',
 });
