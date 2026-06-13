@@ -30,7 +30,7 @@ bun run build      # produção → dist/
 | Tipografia | Manrope — 400, 500, 600, 700, 800 |
 | Formulário | [FormSubmit](https://formsubmit.co) |
 | SEO | `@astrojs/sitemap`, Schema.org `DietNutrition`, geo tags |
-| Deploy | Vercel — `https://dr-dhiego-ventura.vercel.app` |
+| Deploy | Vercel — `https://www.clinicaventura.com.br` |
 
 ---
 
@@ -188,6 +188,7 @@ Todo texto do site está centralizado em `src/data/site.json`. Nenhum conteúdo 
 ### Estrutura do `site.json`
 
 ```
+siteUrl         → URL canônica do site (usada em BaseLayout, sitemap e robots.txt)
 brand           → name, tagline, crn
 seo             → title, description, keywords
 contact         → whatsapp, phone, email, address, hours, googleMapsUrl
@@ -208,7 +209,7 @@ footer          → description, social, links[], copyright
 
 1. Textos, labels, headings e descrições → sempre em `site.json`
 2. Dados de contato (telefone, email, endereço) → referenciar de `site.json`, nunca hardcoded
-3. O `BaseLayout` importa `contact`, `seo` e `brand` para popular meta tags e Schema.org
+3. O `BaseLayout` importa `siteUrl`, `contact`, `seo` e `brand` para popular meta tags e Schema.org
 4. Componentes recebem dados via `import { chave } from '../data/site.json'`
 
 ---
@@ -248,19 +249,30 @@ Não há suíte de testes. A validação é feita pelo build + typecheck + revis
 
 ## Deploy
 
-Configurado para output estático. O domínio está definido em `astro.config.ts`:
+Configurado para output estático. O domínio canônico oficial está definido em `astro.config.ts` e `src/data/site.json`:
 
 ```ts
-site: 'https://dr-dhiego-ventura.vercel.app'
+// astro.config.ts
+site: 'https://www.clinicaventura.com.br'
 ```
+
+```json
+// src/data/site.json
+"siteUrl": "https://www.clinicaventura.com.br"
+```
+
+Redirecionamentos 301 estão configurados em `vercel.json` para forçar o domínio canônico:
+- `diego-ventura.vercel.app/*` → `https://www.clinicaventura.com.br/:splat`
+- `clinicaventura.com.br/*` → `https://www.clinicaventura.com.br/:splat`
 
 **Pré-deploy checklist:**
 
-- [ ] Ajustar `site` em `astro.config.ts` para o domínio real
-- [ ] Verificar `public/robots.txt` — sitemap URL deve apontar para o domínio real
-- [ ] `bun run build` sem erros
-- [ ] `dist/sitemap-index.xml` gera URLs corretas
-- [ ] Schema.org validado no [Rich Results Test](https://search.google.com/test/rich-results)
+- [x] Ajustar `site` em `astro.config.ts` para o domínio real
+- [x] Ajustar `siteUrl` em `src/data/site.json`
+- [x] Verificar `public/robots.txt` — sitemap URL deve apontar para o domínio real
+- [x] `bun run build` sem erros
+- [x] `dist/sitemap-index.xml` gera URLs corretas
+- [ ] Schema.org validado no [Rich Results Test](https://search.google.com/test/rich-results) — obrigatório antes do deploy; validar com a URL canônica `https://www.clinicaventura.com.br`
 - [ ] Google Search Console — submit sitemap
 - [ ] Google Business Profile — NAP consistente com Schema.org
 
