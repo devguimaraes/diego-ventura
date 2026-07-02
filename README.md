@@ -47,9 +47,7 @@ dr-dhiego-ventura/
 │
 ├── public/
 │   ├── robots.txt                # Allow all + sitemap ref
-│   ├── images/                   # 16 imagens (hero, avatar, consultório)
-│   └── videos/
-│       └── video-institucional.mp4
+│   └── images/                   # 16 imagens (hero, avatar, consultório)
 │
 ├── src/
 │   ├── pages/
@@ -234,7 +232,7 @@ footer          → description, social, links[], copyright
 - **Ícones**: `<span class="material-symbols-outlined">nome</span>`
 - **Animações**: `data-animate="reveal|section|title|text|card|button|image"` com IntersectionObserver
 - **Imagens**: `public/images/` — otimizadas via Astro (`Image` de `astro:assets` no Hero)
-- **Vídeos**: `public/videos/`
+- **Vídeos**: YouTube embed via `youtube-nocookie.com` (lite embed, carrega sob demanda)
 
 ### Verificação
 

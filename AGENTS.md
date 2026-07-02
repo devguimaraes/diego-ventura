@@ -38,6 +38,6 @@ src/
 - **Bun** como package manager. `bun.lock` é versionado. `npm` não gera lockfile compatível
 - **FormSubmit** processa o formulário de contato. URL em `site.json` → `contato.form.formSubmitUrl`
 - **Ícones**: Material Symbols via Google Fonts CDN (link no `<head>` do BaseLayout). Usar `<span class="material-symbols-outlined">nome_icone</span>`
-- **Imagens** em `public/` (estáticas). Vídeos em `public/videos/`. `.mp4` na raiz são gitignored
+- **Imagens** em `public/` (estáticas). `.mp4` na raiz são gitignored
 - **Sem testes** — verificação é `bun run build` com 0 erros + `bunx astro check` limpo
 - **Design system**: dark theme (`darkMode: 'class'` no Tailwind), cores Navy + Gold + Sage, fonte Manrope
