@@ -39,17 +39,22 @@ import { servicos } from '../data/site.json';
 
     <!-- Right: Video (5 cols) -->
     <div class="lg:col-span-5 h-full" data-animate="reveal" data-animate-delay="4">
-      <div class="relative w-full aspect-[4/5] lg:h-full rounded-[2.5rem] overflow-hidden glass-card border-white/10 flex items-center justify-center group cursor-pointer shadow-luxury">
-        <video
-          id="institutional-video"
-          src="/videos/video-institucional.mp4"
-          preload="metadata"
-          playsinline
-          poster="/images/consultorio-1.jpg"
+      <div
+        id="institutional-video-container"
+        class="relative w-full aspect-[4/5] lg:h-full rounded-[2.5rem] overflow-hidden glass-card border-white/10 flex items-center justify-center group cursor-pointer shadow-luxury"
+      >
+        <!-- Poster image (substituído pelo iframe do YouTube ao clicar) -->
+        <img
+          id="video-poster"
+          src="/images/consultorio-1.jpg"
+          alt={servicos.video.title}
           class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-[2s]"
-        ></video>
+        />
 
         <div id="video-overlay" class="absolute inset-0 bg-background/40 transition-opacity duration-700"></div>
+
+        <!-- Máscara para esconder a barra de título/canal do YouTube -->
+        <div id="video-top-overlay" class="absolute top-0 left-0 right-0 h-28 z-[2] bg-gradient-to-b from-background via-background via-40% to-transparent pointer-events-none"></div>
 
         <div id="video-labels" class="absolute bottom-10 left-10 z-20 transition-all duration-700 group-hover:translate-y-[-10px]">
           <p class="text-primary font-bold text-2xl mb-2">{servicos.video.title}</p>
@@ -69,67 +74,125 @@ import { servicos } from '../data/site.json';
 </section>
 
 <script>
-  // Video logic
-  const btn = document.getElementById('video-play-btn');
-  const video = document.getElementById('institutional-video') as HTMLVideoElement;
+  // Lite YouTube Embed — iframe com controls=0 (sem UI do YouTube) e controle via postMessage
+  const btn = document.getElementById('video-play-btn') as HTMLElement;
+  const container = document.getElementById('institutional-video-container');
+  const poster = document.getElementById('video-poster');
   const overlay = document.getElementById('video-overlay');
   const labels = document.getElementById('video-labels');
+
+  let iframe: HTMLIFrameElement | null = null;
+  let iframeLoaded = false;
   let playing = false;
 
-  btn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleVideo();
-  });
+  const iconPlay = '<span class="material-symbols-outlined text-5xl leading-none">play_arrow</span>';
+  const iconPause = '<span class="material-symbols-outlined text-5xl leading-none">pause</span>';
+  const iconReplay = '<span class="material-symbols-outlined text-5xl leading-none">replay</span>';
 
-  const videoContainer = btn?.closest('.group');
-  videoContainer?.addEventListener('click', () => {
-    toggleVideo();
-  });
+  function postMessage(command: string) {
+    iframe?.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: command, args: '' }),
+      '*'
+    );
+  }
 
-  function toggleVideo() {
-    if (!video) return;
+  function loadIframe() {
+    if (iframeLoaded) return;
+    iframeLoaded = true;
 
-    if (!playing) {
-      video.style.opacity = '1';
-      if (overlay) overlay.style.opacity = '0';
-      if (labels) labels.style.opacity = '0';
-      if (btn) btn.style.opacity = '0';
-      video.play();
-      if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">pause</span>';
-      playing = true;
-    } else {
-      video.pause();
-      if (overlay) overlay.style.opacity = '1';
-      if (labels) labels.style.opacity = '1';
-      if (btn) btn.style.opacity = '1';
-      if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">play_arrow</span>';
+    iframe = document.createElement('iframe');
+    iframe.id = 'youtube-iframe';
+    iframe.src = 'https://www.youtube-nocookie.com/embed/0-wCOk2g5U8?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1';
+    iframe.title = 'Vídeo Institucional';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.loading = 'lazy';
+    iframe.className = 'absolute inset-0 w-full h-full';
+    iframe.style.border = '0';
+
+    if (poster) poster.replaceWith(iframe);
+    if (overlay) overlay.style.opacity = '0';
+    if (labels) labels.style.opacity = '0';
+    if (btn) {
+      btn.innerHTML = iconPause;
+      btn.style.opacity = '0';
+    }
+    playing = true;
+  }
+
+  function togglePlayPause() {
+    if (!iframeLoaded) {
+      loadIframe();
+      return;
+    }
+
+    if (playing) {
+      postMessage('pauseVideo');
+      if (btn) btn.innerHTML = iconPlay;
       playing = false;
+    } else {
+      postMessage('playVideo');
+      if (btn) btn.innerHTML = iconPause;
+      playing = true;
     }
   }
 
-  // Mostrar controles ao passar o mouse se estiver rodando
-  videoContainer?.addEventListener('mouseenter', () => {
-    if (playing) {
-      if (btn) btn.style.opacity = '1';
-      if (labels) labels.style.opacity = '1';
+  // Click no botão: carrega o iframe (primeira vez) ou alterna play/pause
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePlayPause();
+  });
+
+  // Click no container (fora do botão): apenas carrega na primeira vez
+  container?.addEventListener('click', () => {
+    if (!iframeLoaded) {
+      loadIframe();
     }
   });
 
-  videoContainer?.addEventListener('mouseleave', () => {
-    if (playing) {
-      if (btn) btn.style.opacity = '0';
-      if (labels) labels.style.opacity = '0';
-    }
-  });
-
-  video?.addEventListener('ended', () => {
-    if (overlay) overlay.style.opacity = '1';
-    if (labels) labels.style.opacity = '1';
-    if (btn) {
+  // Hover: mostrar botão quando o vídeo está rodando
+  container?.addEventListener('mouseenter', () => {
+    if (iframeLoaded && playing && btn) {
       btn.style.opacity = '1';
-      btn.innerHTML = '<span class="material-symbols-outlined text-5xl leading-none">replay</span>';
     }
-    playing = false;
+  });
+
+  container?.addEventListener('mouseleave', () => {
+    if (iframeLoaded && playing && btn) {
+      btn.style.opacity = '0';
+    }
+  });
+
+  // Listener de postMessage do YouTube para detectar fim do vídeo
+  window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://www.youtube-nocookie.com') return;
+    try {
+      const data = JSON.parse(event.data);
+      // Estado 0 = ended
+      if (data.event === 'onStateChange' && data.info === 0) {
+        playing = false;
+        if (btn) {
+          btn.innerHTML = iconReplay;
+          btn.style.opacity = '1';
+        }
+      }
+      // Estado 1 = playing
+      if (data.event === 'onStateChange' && data.info === 1) {
+        playing = true;
+        if (btn) btn.innerHTML = iconPause;
+      }
+      // Estado 2 = paused
+      if (data.event === 'onStateChange' && data.info === 2) {
+        playing = false;
+        if (btn) {
+          btn.innerHTML = iconPlay;
+          btn.style.opacity = '1';
+        }
+      }
+    } catch {
+      // ignora mensagens que não são JSON
+    }
   });
 
   // Card Glow effect logic
@@ -141,7 +204,7 @@ import { servicos } from '../data/site.json';
         const rect = card.getBoundingClientRect();
         const x = mouseEvent.clientX - rect.left;
         const y = mouseEvent.clientY - rect.top;
-        
+
         // @ts-ignore
         card.style.setProperty('--x', `${x}px`);
         // @ts-ignore
