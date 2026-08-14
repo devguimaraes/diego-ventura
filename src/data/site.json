@@ -25,7 +25,7 @@
   },
   "nav": {
     "links": [
-      { "label": "Página Inicial", "href": "#inicio" },
+      { "label": "Página Inicial", "href": "#hero" },
       { "label": "Sobre Nós", "href": "#sobre" },
       { "label": "Depoimentos", "href": "#depoimentos" },
       { "label": "Contato", "href": "#contato" }
@@ -39,10 +39,10 @@
     "description": "Chega de tentar sozinho. No plano VIP, você tem um nutricionista acompanhando cada passo: consultas presenciais, ajustes a cada 15 dias e uma estratégia montada para o seu corpo — sem dietas malucas, sem promessas vazias.",
     "description2": "Três consultas presenciais e videochamadas quinzenais pelo WhatsApp. Um plano pensado para quem quer resultado de verdade, com um nutricionista que te conhece pelo nome — não pelo número da ficha.",
     "cta": "Quero transformar meu corpo",
-    "promoLabel": "Promoção válida em Junho e Julho",
-    "price": "R$ 387,00",
+    "promoLabel": "Fale no WhatsApp e receba o plano",
+    "price": "Consulte o valor",
     "priceLabel": "Plano Completo (3 meses)",
-    "priceNote": "vs Consulta avulsa R$ 198,00"
+    "priceNote": "Condições no WhatsApp"
   },
   "servicos": {
     "title": "Como posso te ajudar",
@@ -66,10 +66,10 @@
         "link": "#"
       }
     ],
-    "video": {
-      "title": "Vídeo Institucional",
+    "media": {
+      "title": "Avaliação com bioimpedância",
       "subtitle": "Conheça nosso método de trabalho",
-      "youtubeId": "0-wCOk2g5U8"
+      "image": "/images/atendimento-bioimpedancia.jpg"
     }
   },
   "sobre": {
@@ -93,13 +93,13 @@
         "title": "Atendimento Humanizado",
         "description": "Cada paciente recebe um plano nutricional único, construído a partir de uma escuta atenta às suas necessidades, objetivos e rotina diária.",
         "cta": "Saber Mais",
-        "image": "/images/consultorio-2.jpg"
+        "image": "/images/atendimento-consulta.jpg"
       },
       {
         "title": "Acompanhamento de Resultados",
         "description": "Mais do que prescrever dietas, acompanhamos sua evolução de perto, com avaliações regulares e ajustes contínuos para garantir resultados que duram.",
         "cta": "Saber Mais",
-        "image": "/images/consultorio-3.jpg"
+        "image": "/images/resultado-paciente.jpg"
       }
     ]
   },
@@ -118,7 +118,7 @@
     "subtitleHighlight": "essa é a sua oportunidade.",
     "items": [
       { "icon": "fitness_center", "title": "Perder peso", "subtitle": "1200 - 1800 kcal", "cta": "Entre em Contato", "highlight": false },
-      { "icon": "workspace_premium", "title": "Atendimento VIP", "subtitle": "3 meses de acompanhamento", "price": "R$ 387,00", "cta": "Garantir Vaga VIP", "highlight": true, "badge": "Mais Procurado" },
+      { "icon": "workspace_premium", "title": "Atendimento VIP", "subtitle": "3 meses de acompanhamento", "price": "Consulte o valor", "cta": "Garantir Vaga VIP", "highlight": true, "badge": "Mais Procurado" },
       { "icon": "trending_up", "title": "Ganhar peso", "subtitle": "2400 - 3600 kcal", "cta": "Entre em Contato", "highlight": false }
     ]
   },

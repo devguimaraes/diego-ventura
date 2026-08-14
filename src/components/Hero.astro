@@ -9,7 +9,7 @@ import heroImg from '../../public/images/hero-diego.jpg';
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
     <!-- Text content -->
     <div class="z-10 order-2 lg:order-1" data-animate="reveal">
-      <span class="text-primary font-bold text-label-sm tracking-[0.2em] uppercase block mb-6 animate-pulse">
+      <span class="text-primary font-bold text-label-sm tracking-[0.2em] uppercase block mb-6">
         {hero.badge}
       </span>
       
@@ -30,43 +30,37 @@ import heroImg from '../../public/images/hero-diego.jpg';
       </p>
 
       <div class="flex flex-col sm:flex-row gap-8 items-center">
-        <div class="relative group">
-          <Button href={`https://wa.me/${contact.whatsapp}`} size="lg" class="px-12 py-6 text-label-md font-extrabold btn-magnetic shadow-luxury hover:shadow-luxury-hover transition-all duration-500">
-            {hero.cta} 
-            <span class="material-symbols-outlined ml-2 transition-transform duration-500 group-hover:translate-x-2">arrow_forward</span>
-          </Button>
-          <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <span class="bg-primary/10 text-primary text-[11px] font-bold px-5 py-2 rounded-full border border-primary/20 uppercase tracking-widest backdrop-blur-sm">
-              {hero.promoLabel}
-            </span>
-          </div>
-        </div>
+        <Button
+          href={`https://wa.me/${contact.whatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+          class="px-12 py-6 text-label-md font-extrabold shadow-luxury hover:shadow-luxury-hover"
+        >
+          {hero.cta}
+          <span class="material-symbols-outlined ml-2 transition-transform duration-200 group-hover/button:translate-x-1">arrow_forward</span>
+        </Button>
         
-        <div class="flex flex-col gap-1 text-center sm:text-left pt-8 sm:pt-0">
-          <div class="flex items-center gap-3">
-            <span class="text-primary font-bold text-3xl tracking-tight">{hero.price}</span>
-            <span class="text-on-surface-variant/40 text-sm font-medium">{hero.priceLabel}</span>
-          </div>
-          <div class="text-on-surface-variant/50 text-xs italic">
-            {hero.priceNote}
-          </div>
+        <div class="flex flex-col gap-1 text-center sm:text-left">
+          <span class="text-foreground font-semibold text-lg tracking-tight">{hero.price}</span>
+          <span class="text-on-surface-variant/60 text-sm">{hero.priceLabel} · {hero.priceNote}</span>
         </div>
       </div>
     </div>
 
     <!-- Image -->
     <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end" data-animate="reveal" data-animate-delay="2">
-      <div class="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-75 animate-pulse"></div>
+      <div class="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-75"></div>
       <div class="relative z-10 w-full max-w-lg aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/5 group">
         <Image
           src={heroImg}
           alt="Dr. Dhiego Ventura - Nutricionista"
-          class="hero-image object-cover w-full h-full transition-transform duration-[2s] group-hover:scale-110"
+          class="hero-image img-hover-zoom object-cover w-full h-full"
           width={800}
           height={1000}
           loading="eager"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
       </div>
     </div>
   </div>

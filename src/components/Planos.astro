@@ -1,6 +1,8 @@
 ---
 import Button from './ui/Button.astro';
-import { planos } from '../data/site.json';
+import { planos, contact } from '../data/site.json';
+
+const whatsappHref = `https://wa.me/${contact.whatsapp}`;
 ---
 
 <section class="py-section-gap container-main">
@@ -15,8 +17,8 @@ import { planos } from '../data/site.json';
     {planos.items.map((item) => {
       const isVip = item.highlight;
       const cardClasses = isVip
-        ? 'p-8 bg-surface-container rounded-lg text-center ring-2 ring-primary/50 scale-105 z-10 relative hover:-translate-y-1.5 hover:ring-primary/70 hover:shadow-luxury transition-all duration-300'
-        : 'p-8 bg-surface-container rounded-lg text-center hover:-translate-y-1 hover:shadow-luxury transition-all duration-300';
+        ? 'p-8 bg-surface-container rounded-lg text-center ring-2 ring-primary/50 scale-105 z-10 relative hover:-translate-y-1.5 hover:ring-primary/70 hover:shadow-luxury transition-[transform,box-shadow] duration-200'
+        : 'p-8 bg-surface-container rounded-lg text-center hover:-translate-y-1 hover:shadow-luxury transition-[transform,box-shadow] duration-200';
       return (
         <div class={cardClasses}>
           {item.badge && (
@@ -36,7 +38,7 @@ import { planos } from '../data/site.json';
           ) : (
             <p class="font-manrope text-sm text-on-surface-variant/60 mb-8">{item.subtitle}</p>
           )}
-          <Button variant={isVip ? 'default' : 'outline'} size="lg" class="w-full justify-center py-4">
+          <Button href={whatsappHref} target="_blank" rel="noopener noreferrer" variant={isVip ? 'default' : 'outline'} size="lg" class="w-full justify-center py-4">
             {item.cta}
           </Button>
         </div>

@@ -1,5 +1,7 @@
 ---
-import { especialidades } from '../data/site.json';
+import { especialidades, contact } from '../data/site.json';
+
+const whatsappHref = `https://wa.me/${contact.whatsapp}`;
 ---
 
 <section id="especialidades" class="py-section-gap">
@@ -13,14 +15,19 @@ import { especialidades } from '../data/site.json';
           <p class="font-manrope text-body-lg text-on-surface-variant/80 mb-10 max-w-md">
             {item.description}
           </p>
-          <button class="w-fit border-2 border-primary text-primary px-10 py-3 rounded-full font-manrope text-label-md hover:bg-primary hover:text-on-primary transition-all">
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-fit border-2 border-primary text-primary px-10 py-3 rounded-full font-manrope text-label-md transition-[background-color,color,transform] duration-200 hover:bg-primary hover:text-on-primary active:scale-[0.97]"
+          >
             {item.cta}
-          </button>
+          </a>
         </div>
-        <div class="lg:w-1/2 overflow-hidden min-h-[400px]">
+        <div class="lg:w-1/2 overflow-hidden min-h-[400px] group">
           <img
             alt={`Dr. Dhiego Ventura - ${item.title}`}
-            class="w-full h-full object-cover grayscale-[50%] hover:grayscale-0 transition-all duration-700"
+            class="img-hover-zoom w-full h-full object-cover"
             src={item.image}
           />
         </div>
