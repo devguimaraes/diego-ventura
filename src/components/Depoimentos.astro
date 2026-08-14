@@ -6,7 +6,7 @@ import { depoimentos } from '../data/site.json';
   <h2 class="text-headline-lg text-foreground text-center mb-16">{depoimentos.title}</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     {depoimentos.items.map((item) => (
-      <div class="p-8 bg-surface-container rounded-lg border border-outline-variant/50 hover:-translate-y-1 hover:shadow-luxury transition-all duration-300">
+      <div class="p-8 bg-surface-container rounded-lg border border-outline-variant/50 hover:-translate-y-1 hover:shadow-luxury transition-[transform,box-shadow] duration-200">
         <div class="flex items-center gap-4 mb-6">
           {item.avatar ? (
             <img src={item.avatar} alt={item.name} class="w-12 h-12 rounded-full object-cover border border-primary/30" loading="lazy" width="48" height="48" />

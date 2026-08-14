@@ -8,6 +8,9 @@
 @layer base {
   :root {
     --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   }
 }
 
@@ -15,7 +18,7 @@
   .animate-reveal {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
   }
 
   .animate-reveal.is-visible {
@@ -31,7 +34,7 @@
   .split-text-content {
     display: inline-block;
     transform: translateY(110%);
-    transition: transform 0.8s var(--ease-premium);
+    transition: transform 0.7s var(--ease-out);
   }
 
   .is-visible .split-text-content {
@@ -100,15 +103,27 @@
   color: #d7e3fc;
 }
 
+/* Image hover zoom — only on fine pointers */
+.img-hover-zoom {
+  transition: transform 400ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .img-hover-zoom {
+    transform: scale(1.03);
+  }
+}
+
 /* Animations of Entry */
 [data-animate] {
   opacity: 0;
   transition-property: opacity, transform;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-timing-function: var(--ease-out);
 }
 
+[data-animate="reveal"],
 [data-animate="section"] {
-  transform: translateY(30px);
+  transform: translateY(20px);
   transition-duration: 700ms;
 }
 
@@ -132,7 +147,7 @@
   transform: scale(0.95);
   transition-duration: 400ms;
   transition-delay: 200ms;
-  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-timing-function: var(--ease-out);
 }
 
 [data-animate="image"] {
@@ -155,12 +170,23 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-animate],
+  .animate-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .split-text-content {
+    transform: none;
+    transition: none;
+  }
+
+  .img-hover-zoom {
+    transition: none;
   }
 }

@@ -15,15 +15,15 @@ import { vantagens } from '../data/site.json';
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
     {vantagens.items.map((item, index) => (
       <div 
-        class="flex flex-col items-center group cursor-default p-8 rounded-3xl transition-all duration-500 hover:bg-white/5"
+        class="flex flex-col items-center group cursor-default p-8 rounded-3xl transition-colors duration-200 hover:bg-white/5"
         data-animate="reveal"
         data-animate-delay={index + 1}
       >
         <div class="relative mb-8">
-          <div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-0 group-hover:scale-125 transition-transform duration-700"></div>
-          <span class="material-symbols-outlined text-5xl text-primary relative z-10 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(230,195,100,0.6)]">{item.icon}</span>
+          <div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-90 opacity-0 group-hover:scale-125 group-hover:opacity-100 transition-[transform,opacity] duration-200"></div>
+          <span class="material-symbols-outlined text-5xl text-primary relative z-10 transition-[transform,filter] duration-200 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(230,195,100,0.6)]">{item.icon}</span>
         </div>
-        <h3 class="font-manrope text-headline-md text-foreground mb-4 text-center group-hover:text-primary transition-colors duration-500">{item.title}</h3>
+        <h3 class="font-manrope text-headline-md text-foreground mb-4 text-center group-hover:text-primary transition-colors duration-200">{item.title}</h3>
         <p class="font-manrope text-body-lg text-on-surface-variant/80 text-center leading-relaxed">{item.description}</p>
       </div>
     ))}

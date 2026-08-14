@@ -1,6 +1,9 @@
 ---
 import Button from './ui/Button.astro';
 import { contato, contact } from '../data/site.json';
+
+const inputClass =
+  'w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-[border-color,box-shadow] duration-200';
 ---
 
 <section id="contato" class="py-section-gap bg-surface-container-lowest relative">
@@ -24,11 +27,12 @@ import { contato, contact } from '../data/site.json';
           <div class="flex-1 min-h-[400px] overflow-hidden rounded-lg shadow-xl border border-white/5 relative">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.8621470511307!2d-43.29571042434206!3d-22.881550236970305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997d97184594ed%3A0xa032dbfecae136af!2sNutricionista%20Dhiego%20Ventura%20-%20Clinica%20Nutricionista%20Rio%20de%20Janeiro!5e0!3m2!1spt-BR!2sbr!4v1779861416045!5m2!1spt-BR!2sbr" 
-              class="absolute inset-0 w-full h-full grayscale-[0.2] contrast-[1.1] hover:grayscale-0 transition-all duration-500"
+              class="absolute inset-0 w-full h-full grayscale-[0.2] contrast-[1.1] hover:grayscale-0 transition-[filter] duration-200"
               style="border:0;" 
               allowfullscreen="" 
               loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Localização da Clínica Ventura no Google Maps">
             </iframe>
           </div>
           <div class="text-center lg:text-left">
@@ -45,35 +49,42 @@ import { contato, contact } from '../data/site.json';
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">Nome Completo</label>
+            <label for="contato-nome" class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">Nome Completo</label>
             <input
+              id="contato-nome"
               type="text"
               name="name"
+              autocomplete="name"
               required
               placeholder="Seu nome"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
+              class={inputClass}
             />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">E-mail</label>
+            <label for="contato-email" class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">E-mail</label>
             <input
+              id="contato-email"
               type="email"
               name="email"
+              autocomplete="email"
               required
               placeholder="seu@email.com"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
+              class={inputClass}
             />
           </div>
           <div>
-            <label class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">WhatsApp</label>
+            <label for="contato-whatsapp" class="block font-manrope text-label-md text-on-surface-variant/80 mb-3">WhatsApp</label>
             <input
+              id="contato-whatsapp"
               type="tel"
               name="phone"
+              autocomplete="tel"
+              required
               placeholder="(21) 00000-0000"
-              class="w-full rounded-full border border-outline-variant/30 bg-surface-container-high pl-6 pr-6 py-5 text-base text-foreground placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all"
+              class={inputClass}
             />
           </div>
-          <Button size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">
+          <Button type="submit" size="lg" class="w-full justify-center uppercase tracking-widest font-manrope text-sm">
             {contato.form.submitLabel}
           </Button>
         </form>

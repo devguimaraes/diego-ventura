@@ -36,32 +36,23 @@ import { seo } from '../data/site.json';
 </BaseLayout>
 
 <script>
-  // Respect prefers-reduced-motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animated = document.querySelectorAll('[data-animate]');
 
-  if (!prefersReducedMotion) {
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
+  if (prefersReducedMotion) {
+    animated.forEach((el) => el.classList.add('is-visible'));
+  } else {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
         }
       });
-    }, observerOptions);
-
-    // Select all elements with data-animate and observe
-    document.querySelectorAll('[data-animate]').forEach((el) => {
-      // @ts-ignore
-      const delay = el.getAttribute('data-animate-delay') || '0';
-      if (delay !== '0') {
-        // @ts-ignore
-        el.style.transitionDelay = `${Number(delay) * 100}ms`;
-      }
-      observer.observe(el);
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
     });
+
+    animated.forEach((el) => observer.observe(el));
   }
 </script>
