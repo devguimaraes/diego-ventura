@@ -4,42 +4,41 @@ import SheetNav from './ui/Sheet.astro';
 import { brand, nav, contact } from '../data/site.json';
 ---
 
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent py-6">
-  <div class="container-main flex justify-between items-center">
-    <!-- Logo -->
-    <a href="/">
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 py-6 border-b border-transparent transition-[background-color,border-color,box-shadow] duration-200">
+  <div class="container-main flex items-center justify-between">
+    <a href="/" class="flex items-center shrink-0">
       <img
         src="/images/logo-longa.png"
         alt={`Logo ${brand.name}`}
-        class="h-10 md:h-12 w-auto transition-all duration-500"
+        class="h-10 md:h-12 w-auto"
         width="200"
         height="48"
       />
     </a>
 
-    <!-- Mobile Nav -->
-    <SheetNav links={nav.links} />
-
-    <!-- Nav Links (desktop) -->
-    <nav class="hidden md:flex gap-8">
-      {nav.links.map((link) => (
-        <a
-          href={link.href}
-          class="font-medium text-label-md transition-all duration-300 text-foreground/80 hover:text-primary relative group"
-        >
-          {link.label}
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      ))}
-    </nav>
-
-    <!-- Right side -->
     <div class="flex items-center gap-6">
-      <div class="hidden lg:block">
-        <Button href={`https://wa.me/${contact.whatsapp}`} class="btn-magnetic px-10 h-14 flex items-center justify-center text-sm">
-          Agendar Avaliação
-        </Button>
-      </div>
+      <SheetNav links={nav.links} />
+
+      <nav class="hidden md:flex gap-8">
+        {nav.links.map((link) => (
+          <a
+            href={link.href}
+            class="font-medium text-label-md text-foreground/80 hover:text-primary relative group transition-colors duration-200"
+          >
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-[width] duration-200 group-hover:w-full"></span>
+          </a>
+        ))}
+      </nav>
+
+      <Button
+        href={`https://wa.me/${contact.whatsapp}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden lg:inline-flex px-10 h-14 items-center justify-center text-sm"
+      >
+        Agendar Avaliação
+      </Button>
     </div>
   </div>
 </header>
@@ -48,11 +47,11 @@ import { brand, nav, contact } from '../data/site.json';
   const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      header?.classList.add('bg-background/80', 'backdrop-blur-xl', 'py-3', 'border-white/5', 'shadow-2xl');
-      header?.classList.remove('py-6', 'border-transparent');
+      header?.classList.add('bg-background/80', 'backdrop-blur-xl', 'border-white/5', 'shadow-2xl');
+      header?.classList.remove('border-transparent');
     } else {
-      header?.classList.remove('bg-background/80', 'backdrop-blur-xl', 'py-3', 'border-white/5', 'shadow-2xl');
-      header?.classList.add('py-6', 'border-transparent');
+      header?.classList.remove('bg-background/80', 'backdrop-blur-xl', 'border-white/5', 'shadow-2xl');
+      header?.classList.add('border-transparent');
     }
   });
 </script>
