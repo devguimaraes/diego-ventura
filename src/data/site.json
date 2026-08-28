@@ -51,19 +51,19 @@
         "icon": "fitness_center",
         "title": "Nutrição Esportiva",
         "description": "Melhore sua performance, ganhe massa muscular e defina seu corpo com um plano alimentar feito sob medida para seu treino.",
-        "link": "#"
+        "link": "#nutricao-esportiva"
       },
       {
         "icon": "medication",
         "title": "Suplementação Inteligente",
         "description": "Fórmulas personalizadas que aceleram seu metabolismo, controlam a fome e potencializam a queima de gordura.",
-        "link": "#"
+        "link": "#contato"
       },
       {
         "icon": "spa",
         "title": "Emagrecimento Sustentável",
         "description": "Perca peso comendo bem. Protocolos que respeitam seu corpo e cabem na sua rotina — sem passar fome.",
-        "link": "#"
+        "link": "#contato"
       }
     ],
     "media": {
@@ -71,6 +71,21 @@
       "subtitle": "Conheça nosso método de trabalho",
       "image": "/images/atendimento-bioimpedancia.jpg"
     }
+  },
+  "nutricaoEsportiva": {
+    "title": "Nutrição esportiva na prática",
+    "description": "Consulta presencial com quem leva o treino a sério. Avaliação, plano e acompanhamento — o mesmo método que você vê nestas fotos.",
+    "cta": "Quero um plano para o meu treino",
+    "photos": [
+      {
+        "src": "/images/nutricao-esportiva-consulta.jpg",
+        "alt": "Atendimento de nutrição esportiva na Clínica Ventura"
+      },
+      {
+        "src": "/images/nutricao-esportiva-atleta.jpg",
+        "alt": "Paciente atleta com o nutricionista Dhiego Ventura"
+      }
+    ]
   },
   "sobre": {
     "name": "Dhiego Ventura",

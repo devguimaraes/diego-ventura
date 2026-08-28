@@ -1,0 +1,52 @@
+---
+import Button from './ui/Button.astro';
+import { nutricaoEsportiva, contact } from '../data/site.json';
+
+const whatsappHref = `https://wa.me/${contact.whatsapp}`;
+---
+
+<section id="nutricao-esportiva" class="py-section-gap bg-surface-container-low">
+  <div class="container-main">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div
+        class="order-1 lg:order-2 grid grid-cols-2 gap-4 md:gap-6"
+        data-animate="reveal"
+        data-animate-delay="2"
+      >
+        {nutricaoEsportiva.photos.map((photo) => (
+          <div class="aspect-[3/4] overflow-hidden rounded-[2rem] shadow-luxury group">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="img-hover-zoom w-full h-full object-cover"
+              width="400"
+              height="533"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div class="order-2 lg:order-1 min-w-0" data-animate="reveal">
+        <h2 class="font-manrope text-headline-lg text-foreground mb-4 leading-tight">
+          <span class="split-text-line">
+            <span class="split-text-content">{nutricaoEsportiva.title}</span>
+          </span>
+        </h2>
+        <div class="h-1 w-24 bg-primary rounded-full mb-8"></div>
+        <p class="text-on-surface-variant/80 font-manrope text-body-lg mb-10 max-w-lg leading-relaxed">
+          {nutricaoEsportiva.description}
+        </p>
+        <Button
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+          class="h-auto min-h-12 w-full sm:w-auto max-w-full min-w-0 shrink whitespace-normal text-center px-6 sm:px-10 py-4 text-label-md font-extrabold shadow-luxury hover:shadow-luxury-hover"
+        >
+          {nutricaoEsportiva.cta}
+          <span class="material-symbols-outlined ml-2 shrink-0 transition-transform duration-200 group-hover/button:translate-x-1">arrow_forward</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

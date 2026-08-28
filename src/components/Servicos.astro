@@ -27,7 +27,7 @@ import { servicos } from '../data/site.json';
           <div class="relative z-10">
             <h3 class="font-manrope text-headline-md text-foreground group-hover:text-primary transition-colors duration-200 mb-3">{item.title}</h3>
             <p class="text-on-surface-variant/80 font-manrope text-body-lg mb-6 leading-relaxed">{item.description}</p>
-            <a class="text-primary font-bold text-label-md flex items-center gap-2" href="#contato">
+            <a class="text-primary font-bold text-label-md flex items-center gap-2" href={item.link}>
               Saber mais sobre {item.title} <span class="material-symbols-outlined text-lg transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
             </a>
           </div>
